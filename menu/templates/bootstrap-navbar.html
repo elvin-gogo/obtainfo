@@ -1,0 +1,9 @@
+{% for item in menu %}
+{% if item.separator %}<li class="divider-vertical"></li>{% endif %}
+<li class="page_item {% if forloop.first %} nav_home {% if item.selected %} ishome {% endif %} {% endif %} id="top-menu-{{ item.slug }}">
+    <a href="{{ item.url }}">
+        {% if item.icon %}<i class="icon-{{ item.icon }} icon-white"></i>&nbsp;{% endif %}
+        <span {% ifequal item.url "http://movie.obtainfo.com/" %}style="color: red;"{% endifequal %}>{{ item.title }}</span>
+    </a>
+</li>
+{% endfor %}

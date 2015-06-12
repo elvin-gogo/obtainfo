@@ -1,0 +1,54 @@
+<div class="tab-pane" id="complete">    
+    <div class="hero-unit">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="resource_quality">Info</label>
+                <div class="controls">
+                    <input type="hidden" id="resource_new" value="true" />
+                    <input type="text" id="resource_quality" placeholder="quality" style="width: 60px;">
+                    <input type="text" id="resource_size" placeholder="size" style="width: 40px;">
+                    <input type="text" id="resource_name" placeholder="name" style="width: 300px;">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="resource_link">Link</label>
+                <div class="controls">
+                    <input type="text" id="resource_link" placeholder="resource link" style="width: 380px;">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Action</label>
+                <div class="controls">
+                    <button class="btn" id="resource_add">Add</button>
+                    <button class="btn" id="resource_add_reset">Reset</button>
+                    <button class="btn" id="resource_add_ed2k">Ed2k</button>
+                    <span class="btn fileinput-button">
+                        <span>Torrent</span>
+                        <input id="btupload" type="file" name="bt" multiple>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <table id="render_resource_show" class="table table-bordered table-condensed" style="font-size: 12px;">
+    </table>   
+</div>
+
+{% verbatim %}
+<script id="display_resource" type="text/x-handlebars-template">
+    <tr>
+        <td style="width:40px; max-width:40px; overflow: hidden;">{{quality}}</td>
+        <td style="width:40px; max-width:40px; overflow: hidden;">{{size}}</td>
+        <td style="width:344px; max-width:344px; overflow: hidden;">
+            <a href="{{link}}" >{{name}}</a>
+        </td>
+        <td style="width:40px;">
+            <button class="btn btn-mini btn-warning" data="{{index}}" type="button">Edit</button>
+        </td>
+        <td style="width:40px;">
+            <button class="btn btn-mini btn-danger" data="{{index}}" type="button">Del</button>
+        </td>
+    </tr>
+</script>
+{% endverbatim %}

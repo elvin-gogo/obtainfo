@@ -1,0 +1,85 @@
+{% load comments i18n %}
+<div id="respond">
+    <div id="respond-head"></div>
+    <div id="respond-contain">
+        <form action="{% comment_form_target %}" method="post" id="comment-form" class="well form-tt">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <input type="hidden" name="next" value="{{next}}"/>
+            {% else %}
+                <input type="hidden" name="next" value="{{request.path}}"/>
+            {% endif %}
+            
+            {% if form.non_field_errors %}
+            <div class="error">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            
+            {% if not user.is_authenticated %}
+            <div class="comment-input">
+                {% for field in form %}
+                
+                {% if field.is_hidden %}
+                    {{ field }}
+                {% else %}
+                {% ifequal field.id_for_label 'id_name' %}
+                <div{% if field.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                    <label for="id_name">您的大名或者<span style="color: #ff8a00;">QQ</span>(*必填) ：</label> <br>{{field}}<br>
+                </div>
+                {% endifequal %}
+                
+                {% ifequal field.id_for_label 'id_email' %}
+                <div{% if field.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                    <label for="id_email">E-Mail (*必填)：</label>  <br>{{field}}<br>
+                </div>
+                {% endifequal %}
+                
+                {% ifequal field.id_for_label 'id_url' %}
+                <div{% if field.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                    <label for="id_url"> 您的网站 (可选填)： </label><br>{{field}}
+                </div>
+                {% endifequal %}
+                
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% for field in form %}
+                {% ifequal field.id_for_label 'id_comment' %}
+                <div id="comment-txt-input">
+                    <div{% if field.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                        评论内容 (*必填)：
+                        {% if field.errors %}
+                        {% for error in field.errors %}
+                            {% if forloop.first %}
+                                {{error}}
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <br>
+                        {% if user.is_authenticated %}
+                        <style>
+                            #comment-txt-input textarea{ width: 620px; }
+                        </style>
+                        {% endif %}
+                        {{field}}
+                    </div>
+                </div>
+                {% endifequal %}
+            {% endfor %}
+            
+            <div class="comment_btn">
+            {% if user.is_authenticated %}
+                <input type="submit" name="submit" tabindex="5" value="欢迎{% firstof user.get_full_name user.get_username %}留下足迹..." />
+                <a href="{% url 'admin:logout' %}">{% trans "Log out" %}</a>.
+            {% else %}
+                <input type="submit" name="submit" tabindex="5" value="留下我的足迹..." />
+            {% endif %}
+            </div>
+        </form>
+    </div>
+    <div id="respond-foot"></div>
+</div>

@@ -1,0 +1,16 @@
+<div id="crumb">
+    <div itemprop="breadcrumb" class="breadcrumb">
+        <span>你的位置：</span>
+        {% for crumb in breadcrumbs %}
+            {% if forloop.first %}
+                <a rel="nofollow" href="{{ crumb.url }}" title="{{ crumb.name }}">欧泊首页</a>
+                <span class="gt">&gt;</span>
+            {% elif forloop.last %}
+                {{ crumb.name }}
+            {% else %}
+                <a rel="nofollow" href="{{ crumb.url }}" title="{{ crumb.name }}">{{ crumb.name }}</a>
+                <span class="gt">&gt;</span>
+            {% endif%}
+        {% endfor %}
+    </div>
+</div> <!--面包屑 -->

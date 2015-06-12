@@ -1,0 +1,87 @@
+body {
+	/*padding-top: 20px;*/
+	padding-bottom: 60px;
+	/*background: url(bc.png) repeat-x scroll 0 0 #f3f2f3;*/
+	background: url(http://img01.taobaocdn.com/imgextra/i1/495498642/T2LF7DXDJXXXXXXXXX_!!495498642.png) repeat-x scroll 0 0 #f3f2f3;
+}
+
+/* Custom container */
+.container {
+	margin: 0 auto;
+	width: 1300px;
+}
+
+.row-fluid{
+	margin-top: 30px;
+}
+
+.common_style{
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0,0,0,0.2);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	
+	min-height: 550px;
+	position: relative;
+}
+.common_header{
+	border-bottom:  1px solid rgba(0,0,0,0.2);
+}
+.common_header p{
+	margin-bottom: 0px;
+	font-size: 16px;
+	padding: 10px;
+}
+.common_content{
+	margin-top: 10px;
+}
+
+.result_items{
+	margin-top: 10px;
+	border-bottom: dotted 1px;
+	min-height: 110px;
+}
+.result_poster{
+	float: left;
+	width: 67px;
+	height: 100px;
+}
+.result_content{
+	margin-left: 72px;
+	margin-top: 2px;
+}
+.result_content h1{
+	font-size: 16px;
+	margin: 2px 2px;
+}
+.result_content p{
+	font-size: 12px;
+	overflow: hidden;
+}
+
+.hero-unit{
+	padding: 20px 0 10px 0 !important;
+	border:  dashed 1px;
+	margin-bottom: 15px;
+	
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0,0,0,0.2);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}

@@ -1,0 +1,39 @@
+<div class="tab-pane" id="netdisk"> <!-- netdisk -->
+    <div class="hero-unit add-netdisk-resource">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="netdisk-link">Link</label>
+                <div class="controls">
+                    <input type="text" id="netdisk-link" placeholder="link" style="width: 300px;">
+                    <input type="text" id="netdisk-code" placeholder="code" style="width: 80px;">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Action</label>
+                <div class="controls">
+                    <button class="btn" id="netdisk-add">Add</button>
+                    <button class="btn" id="netdisk-add-reset">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <table id="render-netdisk-show" class="table table-bordered table-condensed" style="font-size: 12px;">
+    </table> 
+</div>
+
+{% verbatim %}
+<script id="display-netdisk-resource" type="text/x-handlebars-template">
+    <tr>
+        <td style="width:300px; max-width:300px; overflow: hidden;">
+            <a href="{{link}}" >{{link}}</a>
+        </td>
+        <td style="width:44px; max-width:44px; overflow: hidden;">
+            <a href="{{code}}" >{{code}}</a>
+        </td>
+        <td style="width:40px;">
+            <button class="btn btn-mini btn-danger" data="{{index}}" type="button">Del</button>
+        </td>
+    </tr>
+</script>
+{% endverbatim %}

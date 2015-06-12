@@ -1,0 +1,83 @@
+{% extends "zinnia/base.html" %}
+{% load i18n zinnia_tags custom_tags %}
+{% load comments %}
+
+{% block title %}{{ flatpage.title }}{% endblock title %}
+
+{% block content %}
+<div class="post">
+    <div class="entry-body">
+        {% block entry-content %}
+        <div class="entry-content">
+            {{ flatpage.content|safe }}
+        </div>
+        {% endblock entry-content %}
+    </div>
+</div>
+
+{% if flatpage.enable_comments %}
+{% block entry-comments %}
+<div class="clear"></div>
+
+<div id="comments">
+	<div id="cmtswitcher">
+		<a id="commenttab" class="curtab" href="javascript:void(0);">{% trans "Comments" %} ({{object.comment_count}})</a>
+		<div class="clear"></div>
+	</div>
+  
+	<div class="comment_div">
+		{% if flatpage.enable_comments %}
+			<div id="comment_head">欢迎交流！</div>
+		{% else %}
+			<div id="comment_head">{% trans "Comments are closed." %}</div>
+		{% endif %}
+		
+        {% get_comment_list for flatpage as comment_list %}
+        {% block comments-loop %}
+        <ul id="thecomments" class="commentlist">
+            {% for comment in comment_list %}
+            <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}" class="comment">
+                <div class="comment_body">
+                    <div class="comment_meta">
+                        <div class="avatar" style="background-image:url('{% get_gravatar comment.email 40 "G" %}')"></div>
+                        <span itemprop="author">{{ comment.name }}</span>
+                    </div>
+                    <div class="comment_content">
+                        <span itemprop="reviewBody">
+                            {% block comment-content %}
+                            {{ comment.comment|linebreaks }}
+                            {% endblock comment-content %}
+                        </span>
+                        <div class="comm_meta_div">
+                            {% block comment-info %}
+                            <p class="comment-info" style="float: right;">
+                                {% if comment.url %}
+                                    <a href="{{ comment.url }}" rel="external nofollow" class="fn url">{{ comment.name }}</a>
+                                {% else %}
+                                    <span class="fn">{{ comment.name }}</span>
+                                {% endif %}
+                                
+                                {% trans "on" context "on date" %}
+                                <abbr class="comment-published" title="{{ comment.submit_date|date:"c" }}">
+                                {{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}
+                                </abbr>
+                            </p>
+                            {% endblock comment-info %}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endblock comments-loop %}
+	</div>
+</div>
+{% endblock entry-comments %}
+
+{% block entry-comments-form %}
+    {% get_comment_form for flatpage  as form %}
+    {% include "comments/flatpages_form.html" %}
+{% endblock entry-comments-form %}
+
+{% endif %}
+{% endblock content %}

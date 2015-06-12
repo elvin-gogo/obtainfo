@@ -1,0 +1,7 @@
+1. atom.py 对下载资源进行原子化处理，确保相同的资源只有一个。
+2. douban_rating 处理豆瓣中豆列的抓取，为精选集服务。
+3. douban_top 豆瓣Top250的抓取
+4. get.py 文本名字提取
+5. magnet.py 资源中等级错误的处理
+6. migration.py 抓取数据库中进行添加域
+7. doulist.py 豆列的生成

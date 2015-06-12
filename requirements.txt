@@ -1,0 +1,7 @@
+python-jsonrpc
+django-grappelli
+django-filebrowser
+django-subdomains
+django-flatblocks
+django-tinymce
+django-app-namespace-template-loader

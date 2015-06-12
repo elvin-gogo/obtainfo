@@ -1,0 +1,197 @@
+{% extends "hot_cache_base.html" %}
+{% load obtainfo_tags static %}
+{% block SEO %}
+<title>{{m.title}}_{{m.title}}高清下载_{{m.title}}在线观看_{{m.title}}百度云盘_{{m.title}}360云盘【更多精彩内容请关注欧泊影视】</title>
+<meta name="keywords" content="{{m.title}}, {{m.title}}高清下载, {{m.title}}在线观看, {{m.title}}百度影音, {{m.title}}百度云盘, {{m.title}}360云盘" />
+<meta name="description" content="Obtainfo电影提供{{m.title}}在线观看和{{m.title}}高清完整版下载; {{m.title}}电影由著名电影明星{{ m.actor | join:"，" }}主演。欧泊影视提供最全最专业的电影资讯。" />
+{% endblock %}
+
+{% block privatecss %}
+<link href="{% static "css/detail.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content_entry %}
+<div class="main">
+    {% ifequal m.type 'movie' %}
+        {% include 'sub_type/info.movie.html' %}
+    {% else %}
+        {% include 'sub_type/info.tv.html' %}
+    {% endifequal %}
+    
+    {% if m.plot %}
+    <div id="plot_review" style="min-height:100px; margin-top:25px;">
+        <ul class="nav nav-pills" id="movie_intro">
+            {% if m.plot %}
+            <li class="active"> <a href="#intro_plot" data-toggle="tab"> <strong>剧情简介</strong> </a> </li>
+            {% endif %}
+            {% if m.comment %}
+            <li> <a href="#intro_review" data-toggle="tab"> <strong>豆瓣评论</strong> </a> </li>
+            {% endif %}
+        </ul>
+        
+        <div class="tab-content">
+            {% if m.plot %}
+            <div class="tab-pane active" id="intro_plot">
+                <p style="font-size: 13px; font-family: 宋体, Arial, sans-serif;">{{m.plot|nbsp|linebreaksbr}}</p>
+            </div>
+            {%endif%}
+            {% if m.comment %}
+            <div class="tab-pane" id="intro_review">
+                <div class="douban">
+                    <ul class="list unstyled">
+                        {% for li in m.comment %}
+                        <li class="item">
+                            <div class="item-content">
+                                <div class="title-bg">
+                                    <h4 class="title">
+                                        <a class="title-link" href="{{li.url}}" target="_blank" >{{li.title}}</a>
+                                    </h4>
+                                    <span class="grade">
+                                        <span class="grade-bg">&nbsp;</span>
+                                        <span class="grade-star" style="width:{{li.rating}}px;"></span>
+                                    </span>
+                                </div>
+                                <p class="text">
+                                    {{li.intro}}<a class="more-link" href="{{li.url}}" target="_blank">全部&gt;&gt;</a>
+                                </p>
+                                <div class="holder"></div>
+                            </div>
+                            <div class="info">
+                                <div class="date">{{li.update | date:"y-m-d"}}</div>
+                                <span class="bull">•</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="douban-comments-all">
+                        <a href="http://movie.douban.com/subject/{{m.douban.id}}/comments" target="_blank" title="查看全部豆瓣影评"> 查看全部豆瓣影评&gt;&gt; </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div><!-- tab-content -->
+    </div><!-- plot-review -->
+    {% elif m.comment %}
+    <div id="plot_review" style="min-height:100px; margin-top:25px;">
+        <ul class="nav nav-pills" id="movie_intro">
+            {% if m.plot %}
+            <li> <a href="#intro_plot"> <strong>影片简介</strong> </a> </li>
+            {% endif %}
+            {% if m.comment %}
+            <li class="active"> <a href="#intro_review"> <strong>豆瓣评论</strong> </a> </li>
+            {% endif %}
+        </ul>
+        
+        <div class="tab-content">
+            {% if m.plot %}
+            <div class="tab-pane" id="intro_plot">
+                <p style="font-size: 13px; font-family: 宋体, Arial, sans-serif;">{{m.plot | nbsp}}</p>
+            </div>
+            {%endif%}
+            {% if m.comment %}
+            <div class="tab-pane active" id="intro_review">
+                <div class="douban">
+                    <ul class="list unstyled">
+                        {% for li in m.comment %}
+                        <li class="item">
+                            <div class="item-content">
+                                <div class="title-bg">
+                                    <h4 class="title">
+                                        <a class="title-link" href="{{li.url}}" target="_blank" >{{li.title}}</a>
+                                    </h4>
+                                    <span class="grade">
+                                        <span class="grade-bg">&nbsp;</span>
+                                        <span class="grade-star" data={{li.rating}}></span>
+                                    </span>
+                                </div>
+                                <p class="text">
+                                    {{li.intro}}<a class="more-link" href="{{li.url}}" target="_blank">全部&gt;&gt;</a>
+                                </p>
+                                <div class="holder"></div>
+                            </div>
+                            <div class="info">
+                                <div class="date">{{li.update}}</div>
+                                <span class="bull">•</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="douban-comments-all">
+                        <a href="http://movie.douban.com/subject/1301283/comments" target="_blank" title="查看全部豆瓣影评"> 查看全部豆瓣影评&gt;&gt; </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div><!-- tab-content -->
+    </div><!-- plot-review -->
+    {% endif %}
+
+    {% ifequal m.type 'movie' %}
+        {% include 'sub_type/resource.movie.html' %}
+    {% else %}
+        {% include 'sub_type/resource.tv.html' %}
+    {% endifequal %}
+    
+    <div id="guess" style="min-height:100px; margin-top:25px;">
+        <ul class="nav nav-pills" id="movie_guess">
+            <li class="active">
+                <a href="#guess"><strong>猜你喜欢</strong></a>
+            </li>
+        </ul>
+        <div class="tab-content" id="guess_lazy">            
+            <div class="tab-pane active" id="guess_guess">
+                {% with board=m.recommend %}
+                <div class="video-board">
+                    {%for ul in board %}
+                    <ul>
+                        {%for v in ul%}
+                        <li>
+                            <div class="vb-item">
+                                <a href="/detail/{{v.id}}/" target="_blank" class="vbi-poster">
+                                    <img class="lazy img-responsive vbip-img" data-original="{% pic_tag v.img 'True' %}" alt="{{v.title}}" width=130 height=170>
+                                    <div class="vbip-icon-shadow"></div>
+                                    <img class="vbip-icon" src="http://img03.taobaocdn.com/imgextra/i3/495498642/T2CqwDXDBXXXXXXXXX_!!495498642.png">
+                                    <span class="vbip-mask"></span>
+                                    <span class="vbip-info">{{v.info}}</span>
+                                </a>
+                                <h4 class="vbi-title">{{v.title}}</h4>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {%endfor%}
+                </div>
+                {% endwith %}
+                
+                <div class="ds-thread" data-thread-key="{{m|oid}}" data-title="{{m.title}}" data-url="/detail/{{m|oid}}/" style="width: 728px;"></div>
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"obtainfo"};
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+</div><!--main-->
+{% endblock %}
+
+{% block content_sidebar %}
+<div class="sidebar" id="sidebar">
+    <div class="ranking">
+        <h4>加载中，请稍候......</h4>
+    </div>
+</div>
+{% endblock %}
+
+{% block privatejs %}
+<script>
+    var i_flash = false;
+    var Global = {oid:"{{m|oid}}"};
+</script> 
+<script src="{% static "js/detail.new.js?v7" %}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,23 @@
+<div class="ranking">
+	<h4>{{title}}</h4>
+	<ol class="ranklist">
+		<li class="poster">
+			<dl>
+				<dt>
+				<a href="/detail/{{first.id}}/" target="_blank" static="no=1">
+					<img src="{{first.image.url}}" alt="{{first.title}}" width=200 height=92>
+					<span class="no no1">1</span>
+					<span class="s-title">{{first.title}}</span>
+					<span class="v-all-bg">&nbsp;</span>
+				</a>
+				</dt>
+			</dl>
+		</li><!--poster-->
+		{% for list in second %}
+		<li class="list">
+			<span class="no no{{forloop.counter0|add:"2"}}">{{forloop.counter0|add:"2"}}</span>
+			<a href="/detail/{{list.id}}/" target="_blank" title="{{list.title}}">{{list.title}}</a>
+		</li>
+		{% endfor %}
+	</ol>
+</div>

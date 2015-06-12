@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load obtainfo_tags static cache %}
+{% block privatecss %}
+    <link href="{% static "css/index.css?v1" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+{% if m.big_poster%}
+
+{% big_poster %}
+
+<div class="row-fluid wrapper_wrapper">
+    <div class="span12">
+        <div class="selection">
+            <div class="selection_header new_hot_header">
+                <a href="/sindex/" class="link-more new-link-more">更多&gt;&gt;</a>
+                <ul class="nav nav-pills pull-right index_nav_pills">
+                    {% for li in m.selection%}
+                    <li {% if forloop.first %}class="active"{% endif %}>
+                        <a href="#selection_{{forloop.counter}}" data-toggle="tab">{{forloop.counter}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <h3>精选集</h3>
+            </div>
+            <div style="clear:both;"></div>
+            <div id="selection_lazy" class="tab-content">
+                {% for li in m.selection%}
+                <div class="tab-pane {% if forloop.first %}active{% endif %}" id="selection_{{forloop.counter}}">
+                    <div class="selection_list">
+                        {% for v in li %}
+                        <div class="video {% if forloop.first %}video_first{%endif%}">
+                            <a href="/selection/{{v | oid}}/" class="poster">
+                                {% if v.pic %}
+                                    <img class="lazy img-responsive poster_img" data-original="{{v.pic}}" alt="{{v.titile}}">
+                                {% else %}
+                                    {% if forloop.first %}
+                                        <img class="lazy img-responsive poster_img" data-original="{{v.bigpic}}" alt="{{v.titile}}">
+                                    {% else %}
+                                        <img class="lazy img-responsive poster_img" data-original="{{v.stdpic}}" alt="{{v.titile}}">
+                                    {% endif %}                                            
+                                {% endif %}
+                                <div class="play_icon_shadow"></div>
+                                <img src="http://img03.taobaocdn.com/imgextra/i3/495498642/T2CqwDXDBXXXXXXXXX_!!495498642.png" class="play_icon">
+                                <span class="s-mask"></span>
+                                <span class="s-title">{{v.title}}</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div><!--selection_list-->
+                </div>
+                {% endfor %}
+            </div><!--jcarousel-->
+        </div><!-- /.selection --> 
+    </div> <!--span12-->
+</div> <!-- wrapper_wrapper -->
+{% endif %}
+
+<div class="row-fluid wrapper_wrapper">
+    <div class="span9">
+        <div class="new_hot new_add">
+            <div class="new_hot_header new_add_header">
+                <h3>电影 / 电视剧</h3>
+            </div>
+            {% include 'item_list.html' %}
+        </div>
+    </div> <!-- span9-->
+    <div class="span3">
+        <div class="sidebar" id="sidebar">
+            <div class="ranking">
+                <h4>加载中，请稍候......</h4>
+            </div>
+        </div>
+    </div> <!--span3-->
+</div>
+
+{% verbatim %}
+<script id="sidebar-template" type="text/x-handlebars-template">
+<div class="ranking">
+	<h4>{{title}}</h4>
+	<ol class="ranklist">
+		<li class="poster">
+			<dl>
+				<dt>
+				<a href="/detail/{{first.id}}/" target="_blank" static="no=1">
+					<img src="{{first.image}}" alt="{{first.title}}" width=200 height=92>
+					<span class="no no1">1</span>
+					<span class="s-title">{{first.title}}</span>
+					<span class="v-all-bg">&nbsp;</span>
+				</a>
+				</dt>
+			</dl>
+		</li><!--poster-->
+        {{#each second}}
+		<li class="list">
+			<span class="no no{{no}}">{{no}}</span>
+			<a href="/detail/{{id}}/" target="_blank" title="{{title}}">{{title}}</a>
+		</li>
+		{{/each}}
+	</ol>
+</div>
+</script>
+{% endverbatim %}
+{% endblock %}
+
+{% block privatejs %}
+<script src="{% static "js/index.js?v4" %}" type="text/javascript"></script>
+{% endblock %}

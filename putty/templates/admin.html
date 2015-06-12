@@ -1,0 +1,31 @@
+{% extends "admins/base.html" %}
+
+{% block privatecss %}
+{% load static %}
+    <link href="{% static "css/admin/report.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="common_style">
+        <div class="common_header">
+            <p class="text-center muted" style="">Statistics</p>
+        </div>
+        <div class="common_content">
+            <div style="padding: 20px;">
+            <table class="table table-striped table-bordered">
+                <thead><tr><th>Item</th><th>Num</th></tr></thead>
+                <tbody>
+                    {% for i in item %}
+                        <tr>
+                            <td>{{i.name}}</td>
+                            <td>{{i.num}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

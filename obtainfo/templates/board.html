@@ -1,0 +1,20 @@
+<div class="video-board">
+	{%for ul in board %}
+	<ul>
+		{%for v in ul%}
+		<li>
+			<div class="vb-item">
+				<a href="/detail/{{v.id}}/" target="_blank" class="vbi-poster">
+					<img class="lazy img-responsive vbip-img" data-original="{{v.img}}" alt="{{v.title}}" width=130 height=170>
+					<div class="vbip-icon-shadow"></div>
+					<img class="vbip-icon" src="http://img03.taobaocdn.com/imgextra/i3/495498642/T2CqwDXDBXXXXXXXXX_!!495498642.png">
+					<span class="vbip-mask"></span>
+					<span class="vbip-info">{{v.info}}</span>
+				</a>
+				<h4 class="vbi-title">{{v.title}}</h4>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{%endfor%}
+</div>

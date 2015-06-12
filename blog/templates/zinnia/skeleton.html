@@ -1,0 +1,95 @@
+{% load i18n staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="{{ LANGUAGE_CODE }}" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>欧泊影视 {% block title %}{% endblock title %}{% block title-page %}{% endblock title-page %}</title>
+        <meta name="robots" content="follow, all" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="{% block meta-description %}{% trans "Just another Zinnia weblog." %}{% endblock meta-description %}{% block meta-description-page %}{% endblock meta-description-page %}" />
+        <meta name="keywords" content="{% block meta-keywords %}django, blog, weblog, zinnia{% endblock meta-keywords %}" />
+        <meta name="author" content="pczhaoyun" />
+        
+        <meta name="360-site-verification" content="7e34bdea13039f0ca084ce1769a1e484" />
+        <meta name="google-site-verification" content="jvkbykub1qr5EHuNQvpxautB38sHF5UetHtofI132R8" />
+        <meta name="baidu-site-verification" content="k8CzGWAVTN" />
+        <meta property="wb:webmaster" content="408454581724bfa0" />
+        
+        {% block meta %}{% endblock meta %}
+        
+        <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "custom.css" %}">
+        <script type="text/javascript" src="{% static "jquery.min.js" %}"></script>
+        <script src="{% static "jquery.lazyload.min.js" %}" type="text/javascript"> </script>
+        <script src="{% static "bootstrap-carousel.js" %}" type="text/javascript"> </script>
+        
+        <link rel="shortcut icon" href="{% static "zinnia/img/favicon.ico" %}" />
+        {% block link %}{% endblock link %}
+        {% block script %}{% endblock script %}
+    </head>
+    <body>    
+        <div id="main">
+            <div id="header">
+                <div id="logo">
+                    <h1> <a id="gohome" href="/"> <span style="display:none"> 欧泊的 </span> </a> </h1>
+                </div>
+                <div id="header_r">
+                    <div id="header_search">
+                        <form class="ips_search_form">
+                            <input class="ips_search_box" type="text" size="30" name="q"
+                                   value="还在打造中，敬请期待..."
+                                   onfocus="if(this.value=='还在打造中，敬请期待...'){this.value='';}"
+                                   onblur="if(this.value==''){this.value='还在打造中，敬请期待...';}">
+                            <input class="ips_search_btn" type="submit" value="搜索">
+                        </form>
+                        <script>
+                            $('.ips_search_btn').click(function(e){
+                                e.preventDefault();
+                                return false;
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clear"> </div>
+            
+            <div class="nav">
+                <ul>                    
+                    {% load menu %}
+                    {% generate_menu %}
+                    {% with menu=menus.main %}{% include "bootstrap-navbar.html" %}{% endwith %}
+                </ul>
+            </div>
+            
+            {% block breadcrumbs %}{% endblock %}
+            
+            {% block hot%}{%endblock%}
+            
+            <div class="clear"></div>
+            
+            <div id="section_post">
+                <div id="content">
+                {% block content %}
+                {% endblock content %}
+                </div>
+                <div id="sidebar">
+                    {% block sidebar %}
+                    {% endblock sidebar %}
+                </div>
+            </div>
+        </div>
+            
+        <div style="clear:both"></div>
+        
+        <div id="footer">
+            {% if not user.is_authenticated %}
+            <script type="text/javascript">
+            var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ffa88091ef440456615e2d1870b7dac8a' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            {% endif %}
+            <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
+        </div>
+    </body>
+</html>

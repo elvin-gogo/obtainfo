@@ -1,0 +1,90 @@
+<div id="resource" style="min-height:100px; margin-top:25px;">
+    {% with resource=m.resource %}
+    <ul class="nav nav-pills" id="resource-tab">
+        {% if resource.online_length > 1 %}
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-type='online' data-toggle="dropdown" data-target="#" href="#">
+                <strong>在线资源<b class="caret"></b></strong>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="online-menu" data-type='online' >
+                {% for g in resource.online %}
+                    {% for s in g.resource %}
+                    <li><a href="#online-resource-{{s.id}}" data-toggle="tab"><img src="{{s.logo}}">&nbsp;&nbsp;{{s.name}}</a></li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </li>
+        {% elif resource.online_length == 1 %}
+        <li><a href="#online-resource" data-type='online' data-toggle="tab"><strong>在线资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.netdisk %}
+        <li><a href="#netdisk-resource" data-type='netdisk' data-toggle="tab"><strong>网盘资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.complete %}
+        <li><a href="#complete-resource" data-type='complete' data-toggle="tab"><strong>全集资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.episode %}
+        <li><a href="#episode-resource" data-type='episode' data-toggle="tab"><strong>单集资源</strong></a></li>
+        {% endif %}
+    </ul>
+    
+    <div class="tab-content" id="tab-content">
+        {% if resource.online_length > 1 %}
+            {% for g in resource.online %}
+                {% for s in g.resource %}
+                <div class="tab-pane" id="online-resource-{{s.id}}">
+                    {% for e in s.episode %}
+                    <a class="episode-button pure-button" href="{{e.link}}" target="_blank" rel="nofollow">{{e.num}}</a>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% elif resource.online_length == 1 %}
+        <div class="tab-pane" id="online-resource">
+            {% with resource.online|first as g %}
+            {% with g.resource|first as s %}
+                {% for e in s.episode %}
+                    <a class="episode-button pure-button" href="{{e.link}}" target="_blank" rel="nofollow">{{e.num}}</a>
+                {% endfor %}
+            {% endwith %}
+            {% endwith %}
+        </div>
+        {% endif %}
+        
+        <div class="tab-pane" id="netdisk-resource">
+            <div class="resource-info-wrapper">
+                <ol>
+                    {% for site in resource.netdisk %}
+                    <li>
+                        <a href="{{site.link}}" target="_blank" rel="nofollow">{{site.name}}&nbsp;：&nbsp;{{site.link}}</a>
+                        {% if site.code %}&nbsp;&nbsp;密码：<span style="color: #fe6e10">{{site.code}}</span>{% endif %}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        
+        <div class="tab-pane" id="complete-resource">
+            <table class="table table-hover table-striped" style="font-size: 12px; width: 728px;">
+                <tbody>
+                    {% for r in resource.complete %}
+                    <tr style="border-top: none !important;">
+                        <td class="table-fix-style"><p style="width: 50px; font-size: 12px;">{{r.size}}</p></td>
+                        <td class="table-resource">
+                            <div style="width: 500px;">
+                                <a class="downloads" href="/download/?c=complete&uid={{r.uid}}" target="_blank" rel=nofollow>{{r.name}}</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tab-pane" id="episode-resource"></div>
+    </div>
+    {% endwith %}
+</div>

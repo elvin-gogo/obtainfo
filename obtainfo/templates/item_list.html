@@ -1,0 +1,43 @@
+{% load obtainfo_tags %}
+<div style="margin-top: 20px;">
+    <ul class="unstyled">
+        {% for result in m.ontop %}
+        <li class="ontop">
+            {% ifequal result.type 'movie' %}
+            {% include 'sub_type/item.movie.html' %}
+            {% else %}
+            {% include 'sub_type/item.tv.html' %}
+            {% endifequal %}
+        </li>
+        {% endfor %}
+        {% for result in m.results %}
+        <li>
+            {% ifequal result.type 'movie' %}
+            {% include 'sub_type/item.movie.html' %}
+            {% else %}
+            {% include 'sub_type/item.tv.html' %}
+            {% endifequal %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% with results=m.pages%}
+<div class="pagination pagination-centered" >
+  <ul>
+    {% if results.has_previous %}
+        <li><a title='上一页' href='?page={{results.previous_page_number}}{% if m.search %}&search={{m.search}}{% endif%}'><span>&lt;</span></a></li>
+    {% endif %}
+    {% for page in results.paginator.page_range_ext %}
+        {% if page = results.number %}
+            <li class="active"><a title='当前页:{{ page }}'><span>{{ page }}</span></a></li>
+        {% else %}
+            <li><a href='?page={{ page }}{% if m.search %}&search={{m.search}}{% endif%}' title='{{ page }}'><span>{{ page }}</span></a></li>
+        {% endif %}
+    {% endfor %}
+    {% if results.has_next %}
+        <li><a title='下一页' href='?page={{ results.next_page_number }}{% if m.search %}&search={{m.search}}{% endif%}'><span>&gt;</span></a></li>
+    {% endif %}
+  </ul>
+</div>
+{% endwith %}

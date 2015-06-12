@@ -1,0 +1,46 @@
+﻿Obtainfo all structuries:
+
+1. describe a movie:
+    title, aka, stdpic, bigpic, director, writer, actor, genre, plot, comment, douban, imdb, area, language,
+	runtime, showtime, year, resource, addtime, samesite, random, recommend
+    is support manual add and scrap add ?
+1.1 download structure:
+	quality, size, link, name
+1.1 netdisk structure:
+	logo, name, link, code
+2. index big poster:
+    oid, title, state, pic, addtime
+3. selection:
+    title, pic, desc, list, count, addtime   ------>    title, stdpic, bigpic, desc, list, count, addtime
+4. ranking:
+    oid, title, score, pic, actor, random, addtime
+
+db.server.server
+db.server.poster
+db.server.selection
+db.server.ranking
+
+first change server and then change local db
+server action(get_all_ids, get_detail, delete, modtify, add)
+poster action(get_all_oid, get_detail, delete_by_oid, )
+selection action()
+
+多集公用一个资源，缺少某些集，一集对应一个资源，
+tv describe struct:
+	title, aka, stdpic, bigpic, director, writer, actor, genre, plot, comment, douban, imdb, area, language,
+	runtime(per episode), showtime(release date), year, season(current season), episode{finish, last, total}, addtime, updatetime,
+	recommend, type(tv, movie),  random,
+	resource info(download resource level, netdisk length, online length)
+tv resource struct:
+	online, netdisk, episode, full
+	
+online resource:
+online: [{from:url, resource:[{finish, last, name:str, logo:url, episode[{link:url, id:mongo id, num:num, uid}]}, ......]}, ......]
+
+episode download resource:
+episode: [{from:url, resource:[{finish, last, episode[{link:url, name:str, quality:str, size:str, num:num, uid}]}, ......]}, ......]
+
+full download resource:
+download: [{quality, link, size, name, uid}, ......]
+
+pyjsonrpc 这个库的json类已经改成使用bosn.json_utils这个类

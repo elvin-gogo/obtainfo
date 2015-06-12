@@ -1,0 +1,22 @@
+{% load i18n %}
+{% if categories %}
+<div id="widget-categories" class="widget panel panel-default">
+    <div class="widget_t"></div>
+    <div class="widget_c">
+        <div class="item_title">{% trans "Categories" %}</div>
+        <ul class="category-root list-group">
+            {% for category in categories %}
+            <li class="list-group-item{% if category.slug == context_category.slug %} current{% endif %}">
+                <a href="{{ category.get_absolute_url }}"
+                    title="{% blocktrans %}Show all entries in {{ category }}{% endblocktrans %}">{{ category }}
+                    <span class="label label-info">
+                      {% blocktrans count entry_count=category.count_entries_published %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+                    </span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="widget_b"></div>
+</div>
+{% endif %}

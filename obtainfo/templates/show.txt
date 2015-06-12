@@ -1,0 +1,3 @@
+﻿{% load obtainfo_tags %}{{m.title}} {{ m.language | first }} {%if m.year%}({{m.year}}){%endif%}
+
+资源地址：http://movie.obtainfo.com/detail/{{m|oid}}/

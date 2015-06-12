@@ -1,0 +1,60 @@
+/**
+ * wraper wraper and common 
+ */
+.wrapper_wrapper{
+	background:#FFF; 
+	margin-bottom:20px; 
+	border-top: 2px solid #6ccdee;
+}
+
+/** **/
+.new_hot{
+	margin-left:15px;
+}
+.new_hot_header{
+	width:100%; 
+	height:40px;
+}
+.new_hot_header h3{
+	text-shadow: none; 
+	font-family: 'Microsoft YaHei'; 
+	font-weight: normal; 
+	float:left;
+}
+
+/**
+ * selection
+ */
+.index_nav_pills {
+	margin:0 15px 10px;;
+}
+.index_nav_pills > li {
+	min-width:36px;
+	height:24px;
+}
+.index_nav_pills > li > a {
+	font:12px/24px '宋体';
+	margin:0px;
+	margin-right:2px;
+	padding:0px 5px;
+	border:0px;
+	border-radius:0px;
+	text-align:center;
+}
+.index_nav_pills > li > a > strong {
+	font-weight:normal;
+}
+
+.condition dt, .condition dd{
+	line-height: 25px;
+}
+.condition .dl-horizontal dt{
+	width: 50px;
+}
+.condition .dl-horizontal dd{
+	margin-left: 10px;
+}
+
+.video-board ul{
+	margin-bottom: 20px;
+}

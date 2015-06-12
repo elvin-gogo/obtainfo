@@ -1,0 +1,294 @@
+.row-fluid{
+	background:#FFF;
+}
+.main{
+	margin-left:15px;
+}
+#movie{
+	margin-top: 20px;
+	min-height: 328px;
+}
+#poster{
+	float: left;
+	width:220px;
+	min-height:328px;
+}
+.poster_img{
+	max-width: 220px;
+	max-height: 300px;
+	width:220px;
+	height:300px;
+}
+#detail{
+	position: relative;
+	margin-left: 240px;
+	min-width: 80px;
+	font-size: 12px;
+	min-height:328px;
+}
+#detail a:hover{
+	color: #f02129;
+	text-decoration: none;
+}
+#detail h4{
+	color: #444;
+	font-family: 微软雅黑, 宋体, Arial;
+	font-size: 20px;
+	font-weight: bold;
+}
+.h4_light{
+	font-weight: normal !important;
+	font-size: 14px;
+}
+.desc{
+	float:left;
+	margin-bottom:3px;
+	color: #a7a9ac;
+	width: 40px;
+}
+.content{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space: nowrap;
+	max-height:80px;
+	margin-bottom:3px;
+	margin-left:40px;
+}
+
+.douban .list .item{
+	display: block;
+	position: relative;
+	_margin-top: -4px;
+	_zoom: 1;
+}
+.douban .list .item-content {
+	border-left: 1px solid #d7d7d7;
+	margin-left: 56px;
+	padding-top: 2px;
+	_zoom: 1;
+}
+.douban .list .title-bg {
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	margin: 0 0 2px 16px;
+	overflow: hidden;
+}
+.douban .list .title {
+	font-weight: bold;
+	display: block;
+	float: left;
+	font-size: 12px;
+	margin-top: 2px;
+}
+.douban .list .title .title_link {
+	color: #4272b0;
+	font-size: 14px;
+}
+.douban .list .grade {
+	display: block;
+	float: left;
+	height: 18px;
+	margin-left: 6px;
+	position: relative;
+	width: 55px;
+}
+.douban .list .grade-bg {
+	background: url("http://img01.taobaocdn.com/imgextra/i1/495498642/T2cGsZXKJaXXXXXXXX_!!495498642.png") no-repeat scroll 0 -11px transparent;
+	z-index: 1;
+	display: block;
+	height: 11px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 7px;
+	width: 55px;
+}
+.douban .list .grade-star {
+	background: url("http://img01.taobaocdn.com/imgextra/i1/495498642/T2cGsZXKJaXXXXXXXX_!!495498642.png") no-repeat scroll 0 0 transparent;
+	z-index: 2;
+	display: block;
+	height: 11px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 7px;
+	width: 55px;
+}
+.douban .list .text {
+	border-bottom: 1px dotted #d7d7d7;
+	clear: both;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	line-height: 20px;
+	margin-left: 16px;
+	padding-bottom: 16px;
+	text-indent: 2em;
+	font-size: 12px !important;
+}
+.douban .last-item .text {
+	border-bottom: none;
+}
+.douban .list .more-link {
+	padding-left: 10px;
+}
+.douban .list .more-link:hover {
+	color: #f02129;
+	text-decoration: none;
+}
+.douban .list .info {
+	border-right: 1px solid #d7d7d7;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 56px;
+	_zoom: 1;
+}
+.douban .list .date {
+	color: #a7a9ac;
+	font-family: arial;
+	font-size: 10px;
+	font-weight: bold;
+	height: 15px;
+	margin-top: 6px;
+	overflow: hidden;
+	width: 50px;
+}
+.douban .list .info span.bull {
+	color: #d7d7d7;
+	font-family: arial;
+	font-size: 19px;
+	position: absolute;
+	right: -4px;
+	top: 0;
+	_zoom: 1;
+}
+.douban-comments-all {
+	text-align: right;
+	font-size: 12px !important;
+}
+.douban-comments-all a:hover {
+	color: #f02129;
+	text-decoration: none;
+}
+
+/* ie8 has problem */
+.video-board{
+	width: 728px !important;
+}
+
+.table-fix-style{
+	width:50px;
+	max-width:50px;
+	overflow: hidden;
+}
+.table-resource{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space: nowrap;
+	font-size: 12px;
+	padding: 0px;
+}
+.copy{
+	color: #333333;
+	padding: 8px 0px;
+}
+/*
+ *Table elements have trouble with absolute positioning, and zClip uses absolute positioning to place the flash movie on top of the target element.
+ *To work around this you can wrap a block level element (I used a <div>) around the target element, and give that position: relative.
+*/
+.table-resource div{
+	position: relative;
+}
+
+/**
+ * resource board
+ */
+.resource-board{
+	width: 728px;
+}
+.resource-board ul{
+	list-style: none;
+	margin: 0px;
+	margin-bottom: 10px;
+	width: 100%;
+	height: 210px;
+}
+.resource-board li{
+	float:left;
+	width:130px;
+	height:210px;
+	margin-left: 19px;
+}
+.resource-board li:first-child{
+	margin-left: 0px !important;
+} 
+.video-board .vb-item{
+	position:relative;
+	float:left;
+	width:130px;
+	height:210px;
+	margin:0px;
+}
+.resource-info-wrapper {
+    color: #000;
+    line-height: 20px;
+    font-size: 14px;
+}
+.resource-info-wrapper ul,.resource-info-wrapper ol,.resource-info-wrapper li {
+	list-style-image:none;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.resource-info-wrapper ul,.resource-info-wrapper ol {
+	padding-left:30px;
+	margin:15px 0 15px 0;
+}
+.resource-info-wrapper ul li {
+	list-style-type:square;
+}
+.resource-info-wrapper ol li {
+	list-style-type:decimal;
+}
+.resource-info-wrapper ul li,.resource-info-wrapper ol li {
+	margin-bottom:7px;
+	padding-bottom:7px;
+	border-bottom:1px dashed #dfdfdf;
+}
+.resource-info-wrapper ul li a,.resource-info-wrapper ol li a {
+	display:inline-block;
+}
+
+/* online resource */
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.button-success {
+	background: rgb(28, 184, 65); /* this is a green */
+}
+.button-error {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
+.button-warning {
+	background: rgb(223, 117, 20); /* this is an orange */
+}
+.button-secondary {
+	background: rgb(66, 184, 221); /* this is a light blue */
+}
+.episode-button {
+	width: 32px;
+	margin-bottom: 10px;
+	text-decoration: none;
+}
+.episode-button:visited
+{ 
+	background-color:#bbb;
+}

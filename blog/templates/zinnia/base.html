@@ -1,0 +1,79 @@
+{% extends "zinnia:zinnia/base.html" %}
+{% load zinnia_tags i18n %}
+
+{% block sidebar %}
+{% if user.is_authenticated %}
+<div id="widget-tools" class="widget panel panel-danger">
+    <div class="widget_t"></div>
+    <div class="widget_c">
+        <div class="item_title">{% trans "Tools" %}</div>
+        <ul class="randomposts">
+            {% if perms.zinnia %}
+            <li class="list-group-item">
+              <a href="{% url 'admin:app_list' 'zinnia' %}" title="{% trans "Dashboard" %}">
+                <span class="glyphicon glyphicon-book"></span>
+                {% trans "Dashboard" %}
+              </a>
+            </li>
+            {% endif %}
+            
+            {% if perms.zinnia.add_entry %}
+            <li class="list-group-item">
+              <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "Post an entry" %}">
+                <span class="glyphicon glyphicon-pencil"></span>
+                {% trans "Post an entry" %}
+              </a>
+            </li>
+            {% endif %}
+            
+            {% block admin-tools %}
+            {% endblock admin-tools %}
+            
+            <li class="list-group-item">
+              <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
+                <span class="glyphicon glyphicon-off"></span>
+                {% trans "Log out" %}
+              </a>
+            </li>
+        </ul>
+    </div>
+    <div class="widget_b"></div>
+</div>
+{% endif %}
+
+{% block sidebar_categories %}
+{% endblock %}
+
+{% block sidebar_welcome %}
+<div id="widget-welcome" class="widget panel panel-default">
+    <div class="widget_t"></div>
+    <div class="widget_c">
+        <div class="item_title">欢迎访问欧泊影视</div>
+        <div class="widget_content">
+            <p>本博客分享一些电影资讯</p>
+            <p>方便大家决定哪里电影值得观看提供更多的参考!</p>
+            <p>最后致力于打造一个最佳的分享平台!</p>
+        </div>
+    </div>
+    <div class="widget_b"></div>
+</div>
+{% endblock %}
+
+<div id="widget-comments" class="widget panel panel-default">
+    <div class="widget_t"></div>
+    <div class="widget_c">
+        <div class="item_title">{% trans "Recent comments" %}</div>
+        {% get_recent_comments 10 %}
+    </div>
+    <div class="widget_b"></div>
+</div>
+
+<div id="widget-randoms" class="widget panel panel-default">
+    <div class="widget_t"></div>
+    <div class="widget_c">
+        <div class="item_title">{% trans "Random entries" %}</div>
+        {% get_random_entries 25 %}
+    </div>
+    <div class="widget_b"></div>
+</div>
+{% endblock sidebar %}

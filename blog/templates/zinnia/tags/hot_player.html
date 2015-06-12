@@ -1,0 +1,30 @@
+<div id="play" class="carousel slide">
+	<div id="play_bg"></div>
+	
+	<div id="play_control">
+		<ul class="carousel-indicators">
+			{% for entry in entries %}
+			<li data-target="#play" data-slide-to="{{forloop.counter0}}" class="{%if forloop.first%}active{%endif%}"></li>
+			{% endfor %}
+		</ul>
+	</div>
+	
+	<div id="play_list" class="carousel-inner">
+		{% for entry in entries %}
+		<div class="item {%if forloop.first%}active{%endif%}">
+			<a href="{{entry.get_absolute_url}}" target="_blank">
+				<img src="{{entry.featured_image.url}}" width="300" height="200">
+			</a>
+			<div id="play_info">
+				<b>{{entry.featured_short_title}}</b>{{entry.featured_short_comment}}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.carousel').carousel();
+});
+</script>

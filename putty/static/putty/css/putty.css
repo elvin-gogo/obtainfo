@@ -1,0 +1,151 @@
+body {
+	/*padding-top: 20px;*/
+	padding-bottom: 60px;
+	/*background: url(bc.png) repeat-x scroll 0 0 #f3f2f3;*/
+	background: url(http://img01.taobaocdn.com/imgextra/i1/495498642/T2LF7DXDJXXXXXXXXX_!!495498642.png) repeat-x scroll 0 0 #f3f2f3;
+}
+
+/* Custom container */
+.container {
+	margin: 0 auto;
+	width: 1300px;
+}
+
+.tab-pane{
+	min-height: 2000px;
+}
+
+.row-fluid{
+	margin-top: 30px;
+}
+
+.raw_show{
+	float: left;
+	width: 480px;
+	position: relative;
+}
+
+.add_main{
+	float: left;
+	margin-left: 5px;
+	position: relative;
+	width: 565px;
+}
+
+.search_result{
+	float: left;
+	margin-left: 10px;
+	position: relative;
+	width: 240px;
+}
+
+.form-horizontal .control-label{
+	width: 70px !important;
+}
+
+.form-horizontal .controls{
+	margin-left: 80px !important;
+}
+
+.detail-form .control-label{
+	width: 40px !important;
+}
+
+.detail-form .controls{
+	margin-left: 50px !important;
+}
+
+.half_input{
+	width: 180px;
+}
+.full_input{
+	width: 400px;
+}
+
+.form-horizontal .controls {
+	font-size: 12px;
+}
+
+.form-horizontal input {
+   font-family: inherit;
+   font-size: inherit;
+}
+
+.form-horizontal textarea {
+   font-family: inherit;
+   font-size: inherit;
+}
+
+.result_items{
+	margin-top: 10px;
+	border-bottom: dotted 1px;
+	min-height: 110px;
+}
+.result_poster{
+	float: left;
+	width: 67px;
+	height: 100px;
+}
+.result_content{
+	margin-left: 72px;
+	margin-top: 2px;
+}
+.result_content h1{
+	font-size: 16px;
+	margin: 2px 2px;
+}
+.result_content p{
+	font-size: 12px;
+	overflow: hidden;
+}
+
+.hero-unit{
+	padding: 20px 0 10px 0 !important;
+	border:  dashed 1px;
+	margin-bottom: 15px;
+	/*background: #F9F9F9;*/
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+	background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+	background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-secondary {
+	background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.online-add-block, .episode-add-block{
+	border-top: dotted 1px;
+	border-left: dotted 1px;
+	border-right: dotted 1px;
+	margin-bottom: 10px;
+}
+
+.online-detail-show, .episode-detail-show{
+	padding-left: 10px;
+	margin: 10px 0;
+	border-bottom: dotted 1px;
+	min-height: 20px;
+}
+
+.online-button, .episode-button {
+	width: 60px;
+	margin-bottom: 10px;
+}

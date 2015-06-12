@@ -1,0 +1,39 @@
+<div id="hot_tab">
+    <div id="hot_tab_control" class="hot_tab_control">
+        <ul>
+            {% for item in entries %}
+            <li><a data="{{item.id}}" {%ifequal item.id 'access'%}class="current_tab"{%endifequal%}>{{item.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    {% for item in entries %}
+    <div id="{{item.id}}" class="hot_tab_list" {%ifnotequal item.id 'access'%}style="display: none;"{%endifnotequal%}>
+        <ul>
+            {% for entry in item.entries %}
+            <li>
+                <span class="tabNum">{{forloop.counter}}</span><a href="{{entry.get_absolute_url}}" target='_blank'>{{entry.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+<script>
+$(document).ready(function(){
+	$("#hot_tab_control").click(function(e){
+		e.preventDefault();
+        var el = $(e.target), ct = $(this), ol = $('.current_tab');
+        var od = ol.attr("data"), nd = el.attr("data");
+        
+        if (od != nd){
+            ol.removeClass('current_tab'); 
+            el.addClass('current_tab');
+            $("#" + nd).css('display','block');
+            $("#" + od).css('display','none');
+        }
+        
+		return false;
+	});
+});
+</script>
+</div>

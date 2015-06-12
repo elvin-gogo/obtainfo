@@ -1,0 +1,45 @@
+{% load i18n %}
+<div class="pagenavi pagenavi-bottom">
+    <span class="pagenavi_l"></span>
+    <span class="pagenavi_c">
+        <span class="pages">分页导航：</span>
+        {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}{{ GET_string }}" title="{% trans "More recent entries" %}">上一页</a>
+        {% endif %}
+            
+        {% for page_number in begin %}
+            {% ifequal page.number page_number %}
+                <span class="current_nav_under">{{ page_number }}</span>
+            {% else %}
+                <a href="?page={{ page_number }}{{ GET_string }}" title="{% trans "Entries page" %} {{ page_number }}">{{ page_number }}</a>
+            {% endifequal%}
+        {% endfor %}
+        
+        {% if middle %}
+        <a href="#">&hellip;</a>
+        {% for page_number in middle %}
+            {% ifequal page.number page_number %}
+                <span class="current_nav_under">{{ page_number }}</span>
+            {% else %}
+                <a href="?page={{ page_number }}{{ GET_string }}" title="{% trans "Entries page" %} {{ page_number }}">{{ page_number }}</a>
+            {% endifequal%}
+        {% endfor %}
+        {% endif %}
+            
+        {% if end %}
+            <a href="#">&hellip;</a>
+        {% for page_number in end %}
+            {% ifequal page.number page_number %}
+                <span class="current_nav_under">{{ page_number }}</span>
+            {% else %}
+                <a href="?page={{ page_number }}{{ GET_string }}" title="{% trans "Entries page" %} {{ page_number }}">{{ page_number }}</a>
+            {% endifequal%}
+        {% endfor %}
+        {% endif %}
+            
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}{{ GET_string }}" title="{% trans "More old entries" %}">下一页</a>
+        {% endif %}
+    </span>
+    <span class="pagenavi_r"></span>
+</div>

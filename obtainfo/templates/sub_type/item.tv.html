@@ -1,0 +1,102 @@
+{% load obtainfo_tags %}
+{% if user.is_authenticated %}
+<div class="btn-toolbar">
+    <div class="btn-group btn-group-xl" style="font-size: 12px;">
+        <a href="/detail/{{result|oid}}/thunder/" target="_blank" class="btn btn-small">迅雷链接</a>
+        <a href="/detail/{{result|oid}}.txt" class="btn btn-small">文本文件</a>
+        {% mark_recommend result|oid %} {% mark_top result|oid %}
+    </div>
+</div>
+{% endif %}
+<div class="movie">
+    <div class="movie-poster">
+        <a href="/detail/{{result|oid}}/">
+            <img class="lazy" data-original="{% pic_tag result.bigpic 'True' %}" alt="{{result.title}}" width="150" height="200">
+        </a>
+    </div>
+    <div class="detail">
+        <a href="/detail/{{result|oid }}/">
+            <h4>{{result.title}}
+                <span class="h4_light">{{ result.language | first }} {%if result.year%}({{result.year}}){%endif%}</span>
+            </h4>
+        </a>
+        
+        {% if result.douban.id and result.genre %}
+        <div class="two-infos">
+            <div class="two-infos-part">
+                <p class="desc">豆 瓣：</p>
+                <p class="content">
+                    <a class="douban-link" href="http://movie.douban.com/subject/{{result.douban.id}}/" target="_blank" rel="nofollow">
+                        {{result.douban.ranking.score}} / {{result.douban.ranking.count}}
+                    </a>
+                </p>
+            </div>
+            <div class="two-infos-part">
+                <p class="desc">标  签：</p>
+                <p class="content single-line">{{ result.genre | join:" / " }}</p>
+            </div>
+        </div>
+        {% elif result.douban.id %}
+        <div>
+            <p class="desc">豆 瓣：</p>
+            <p class="content">
+                <a class="douban-link" href="http://movie.douban.com/subject/{{result.douban.id}}/" target="_blank" rel="nofollow">
+                    {{result.douban.ranking.score}} / {{result.douban.ranking.count}}
+                </a>
+            </p>
+        </div>
+        {% elif result.genre %}
+        <div>
+            <p class="desc">标  签：</p>
+            <p class="content single-line">{{ result.genre | join:" / " }}</p>
+        </div>
+        {% endif %}
+        
+        <div class="two-infos">
+            {% if result.resource %}
+            <div class="two-infos-part">
+                <p class="desc">属 性：</p>
+                {% with rs=result.resource %}
+                <p class="content">
+                    {% if result.finish %}
+                        <span style="color: #72962e;">已完结</span>
+                    {% else %}
+                        <span style="color: #f57b00;">更新到第20集</span>
+                    {% endif %}
+                    {%if rs.online %}<span style="color: #72962e;">在线</span>{% endif %}
+                    {%if rs.netdisk %}<span style="color: #f57b00;">网盘</span>{% endif %}
+                    {%if rs.level %}<span style="color: #8c3a2b;">{{rs.level}}</span>{% endif %}
+                </p>
+                {% endwith %}
+            </div>
+            {% endif %}
+            {% if result.area %}
+            <div class="two-infos-part">
+                <p class="desc">地  区：</p>
+                <p class="content single-line">{{ result.area | join:" / " }}</p>
+            </div>
+            {% endif %}
+        </div>
+        
+        {% if result.director%}
+        <div >
+            <p class="desc">导  演：</p>
+            <p class="content single-line">{% for director in result.director %} <a href="/search/?search={{director}}" rel="nofollow">{{director}}</a> {% endfor %}</p>
+        </div>
+        {% endif %}
+        
+        {% if result.actor %}
+        <div>
+            <p class="desc">主  演：</p>
+            <p class="content single-line">{% for actor in result.actor %} <a href="/search/?search={{actor}}" rel="nofollow">{{actor}}</a> {% endfor %}</p>
+        </div>
+        {% endif %}
+        
+        {% if result.plot %}
+        <div >
+            <p class="desc">简  介：</p>
+            <p class="content figcaption">{{result.plot}}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>

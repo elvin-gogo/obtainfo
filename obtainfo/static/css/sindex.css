@@ -1,0 +1,43 @@
+.poster{
+  float: left;
+  padding-left: 15px;
+  width: 150px;
+}
+
+.movie{
+	min-height: 220px;
+	width: 744px;
+}
+.detail{
+  position: relative;
+  margin-left: 130px;
+  min-height: 220px;
+  font-size: 12px;
+}
+.detail a:hover{
+	color: #f02129;
+	text-decoration: none;
+}
+.detail h4{
+	color: #444;
+	font-family: '微软雅黑','宋体',Arial;
+	font-size: 18px;
+	font-weight: bold;
+}
+.poster_img{
+  max-width: 120px;
+  max-height: 160px;
+}
+.desc{
+	float:left;
+	margin-bottom:5px;
+	color: #a7a9ac;
+	width: 40px;
+}
+.content{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	max-height:80px;
+	margin-bottom:5px;
+	margin-left:40px;
+}

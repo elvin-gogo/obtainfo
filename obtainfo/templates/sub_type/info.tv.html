@@ -1,0 +1,142 @@
+{% load obtainfo_tags static %}
+<div id="movie">
+    <div id="poster">
+        <a href="#resource">
+            <img class="lazy poster_img" data-original="{% pic_tag m.bigpic 'True' %}" alt="{{m.title}}" width=220 height=300>
+        </a>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a title="一键分享" href="#" class="bds_mshare" data-cmd="mshare"></a>
+            <a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a>
+            <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a>
+            <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a>
+            <a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a>
+            <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a>
+        </div>
+        <script>window._bd_share_config={"common":{
+            "bdSnsKey":{},
+            "bdText":"{{m.title}}全集_{{m.title}}高清下载_{{m.title}}在线观看_{{m.title}}百度云盘下载_{{m.title}}360云盘下载, 当前画质为720P版。【更多精彩内容请关注欧泊影视】",
+            "bdMini":"2",
+            "bdPic":"{% pic_tag m.bigpic 'True' %}",
+            "bdUrl":"http://movie.obtainfo.com/detail/{{m|oid}}/",
+            "bdStyle":"0",
+            "bdSize":"16",
+            },
+            "share":{}
+        };
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    </div>
+    
+    <div id="detail">
+        <a href="#resource" class="detail_header">
+            <h4>{{m.title}}
+                <span class="h4_light">{{ m.language | first }} {%if m.year%}({{m.year}}){%endif%}</span>
+            </h4>
+        </a>
+            
+        <div>
+            <p class="desc">迅 雷：</p>
+            <p class="content"> <a href="/detail/{{m | oid }}/thunder/" target="_blank" rel="nofollow">向好友分享本文的迅雷链接</a></p>
+        </div>
+        <div>
+            <p class="desc">文 件：</p>
+            <p class="content"> <a href="/detail/{{m | oid }}.txt" rel="nofollow">向好友分享这部剧集的简介</a></p>
+        </div>
+        
+        {% if m.douban.id %}
+        <div class="realtime">
+            <p class="desc">豆 瓣：</p>
+            <p class="content">
+                <a style="padding:0px; margin:0px; color:#fe6e10; font-weight: bold;" href="http://movie.douban.com/subject/{{m.douban.id}}/" target="_blank" rel="nofollow">
+                    {{m.douban.ranking.score}} / {{m.douban.ranking.count}}
+                </a>
+            </p>
+        </div>
+        {% endif %}
+        
+        {% if m.aka %}
+        <div class="realtime">
+            <p class="desc">又 名：</p>
+            <p class="content"> {{ m.aka | join:" / " }} </p>
+        </div>
+        {% endif %}
+        
+        {% if m.genre %}
+        <div class="realtime">
+            <p class="desc">标 签：</p>
+            <p class="content">{{ m.genre | join:" / " }}</p>
+        </div>
+        {% endif %}
+        
+        {% if m.director %}
+        <div class="realtime">
+            <p class="desc">导 演：</p>
+            <p class="content">
+                {% for d in m.director %} <a href="/search/?search={{d}}" rel="nofollow">{{d}}</a> {% endfor %}
+            </p>
+        </div>
+        {% endif %}
+    
+        {% if m.writer %}
+        <div class="realtime">
+            <p class="desc">编 剧：</p>
+            <p class="content">
+                {% for w in m.writer %} <a href="/search/?search={{w}}" rel="nofollow">{{w}}</a> {% endfor %}
+            </p>
+        </div>
+        {% endif %}
+        
+        {% if m.actor %}
+        <div class="realtime">
+            <p class="desc">主 演：</p>
+            <p class="content">
+                {% for a in m.actor %} <a href="/search/?search={{a}}" rel="nofollow">{{a}}</a> {% endfor %}
+            </p>
+        </div>
+        {% endif %}
+    
+        {% if m.area %}
+        <div class="realtime">
+            <p class="desc">地 区：</p>
+            <p class="content">{{ m.area | join:" / " }}</p>
+        </div>
+        {% endif %}
+        
+        {% if m.showtime %}
+        <div class="realtime">
+            <p class="desc">首 播：</p>
+            <p class="content">{{m.showtime}}</p>
+        </div>
+        {% endif %}
+    
+        {% if m.runtime %}
+        <div class="realtime">
+            <p class="desc">片 长：</p>
+            <p class="content">{{m.runtime}}</p>
+        </div>
+        {% endif %}
+        
+        {% if m.season %}
+        <div class="realtime">
+            <p class="desc">季 数：</p>
+            <p class="content">{{m.season}}</p>
+        </div>
+        {% endif %}
+        
+        {% if m.runtime %}
+        <div class="realtime">
+            <p class="desc">集 数：</p>
+            <p class="content">{{m.episode}}{% if m.finish %}已完结{% else %}连载中{% endif %}</p>
+        </div>
+        {% endif %}
+        
+        {% if m.imdb %}
+        <div class="realtime">
+            <p class="desc">IMDB：</p>
+            <p class="content">
+                <a href="http://www.imdb.com/title/{{m.imdb}}/" target="_blank" rel="nofollow">{{m.imdb}}</a>
+            </p>
+        </div>
+        {% endif %}
+    </div><!--detail-->
+</div><!--tv-->

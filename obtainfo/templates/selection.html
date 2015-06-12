@@ -1,0 +1,18 @@
+{% extends "hot_cache_base.html" %}
+{% load obtainfo_tags static %}
+{% block SEO %}
+<title>obtainfo - {{title}}</title>
+<meta name="description" content="{{title}}">
+{% endblock %}
+
+{% block content_entry %}
+<div class="new_hot">
+    {% include 'item_list.html' %}
+</div>
+{% endblock %}
+
+{% block privatejs %}
+    <script>
+        $("img.lazy").lazyload({effect : "fadeIn"});
+    </script>
+{% endblock %}

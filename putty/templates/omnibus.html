@@ -1,0 +1,195 @@
+{% extends "putty.html" %}
+
+{% block privatecss %}
+{% load static %}
+	<link rel="stylesheet" href="{% static "multiselect2side/multiselect2side.css" %}" />
+	<link rel="stylesheet" href="{% static "upload/css/jquery.fileupload.css" %}">
+    <link rel="stylesheet" href="{% static "css/admin/omnibus.css" %}" />
+{% endblock %}
+
+{% block submenu %}
+<ul class="nav nav-pills" id="omnibus_main" style="float:right;">
+	<li class="active"><a href="#detail" data-toggle="tab">Detail</a></li>
+	<li><a href="#add" data-toggle="tab">New</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+	<div class="omnibus_main">
+		<div class="tab-content">
+			<div class="tab-pane active" id="detail" >
+				<div class="column_left" style="width: 600px; float: left; margin-left: 40px;">
+					<table class="table table-bordered table-hover table-condensed" style="width: 600px; font-size: 12px;">
+						<tr> <th>title</th> <th>count</th> <th>date</th> <th>Edit</th> <th>Delete</th> </tr>
+						{% for tr in left%}
+						<tr>
+							<td style="width:180px; max-width:180px; overflow: hidden;">{{tr.title}}</td>
+							<td style="width:30px; max-width:30px; overflow: hidden;">{{tr.count}}</td>
+							<td style="width:100px; max-width:100px; overflow: hidden;">{{tr.date|date:"Y M d D"}}</td>
+							<td style="width:40px; max-width:40px;">
+								<button class="btn btn-mini btn-warning detail-edit" data="{{tr.id}}" type="button">Edit</button>
+							</td>
+							<td style="width:40px; max-width:40px;">
+								<button class="btn btn-mini btn-danger detail-del" data="{{tr.id}}" type="button">Del</button>
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+				<div class="column_right" style="width: 600px; float: left; margin-left: 20px;">
+					<table class="table table-bordered table-hover table-condensed" style="width: 600px; font-size: 12px;">
+						<tr> <th>title</th> <th>count</th> <th>date</th> <th>Edit</th> <th>Delete</th> </tr>
+						{% for tr in right%}
+						<tr>
+							<td style="width:180px; max-width:180px; overflow: hidden;">{{tr.title}}</td>
+							<td style="width:30px; max-width:30px; overflow: hidden;">{{tr.count}}</td>
+							<td style="width:100px; max-width:100px; overflow: hidden;">{{tr.date|date:"Y M d D"}}</td>
+							<td style="width:40px; max-width:40px;">
+								<button class="btn btn-mini btn-warning detail-edit" data="{{tr.id}}" type="button">Edit</button>
+							</td>
+							<td style="width:40px; max-width:40px;">
+								<button class="btn btn-mini btn-danger detail-del" data="{{tr.id}}" type="button">Del</button>
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+			<div class="tab-pane" id="add">
+				<div id="first_step" style="display: block;">
+					<div class="left-part">
+						<form class="form-horizontal" id="list_server">
+							<div class="control-group">
+								<label class="control-label" for="Title">Title</label>
+								<div class="controls">
+									<input type="text" id="title" name="title" placeholder="title" style="width: 340px;">
+									<button class="btn" type="submit" id="formtolist_btn">添加</button>
+									<button class="btn" type="submit" id="douban_btn">豆瓣</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="selection-desc">Desc</label>
+								<div class="controls">
+									<textarea rows="15" id="selection-desc" name="selection-desc" style="width: 460px;" placeholder="make description for this selection"></textarea>
+								</div>
+							</div>
+							<div class="control-group"> <!-- add image -->
+								<label class="control-label" for="image_url">Image Url</label>
+								<div class="controls">
+									<input type="text" id="image_url" placeholder="input image url" class="full_input" style="width: 350px;">
+									<button class="btn" id="add_img_url">Add</button>
+								</div>
+							</div>
+							<div class="control-group"> <!-- add image -->
+								<!-- The fileinput-button span is used to style the file input field as button -->
+								<label class="control-label" for="fileupload">Image Upload</label>
+								<span class="btn btn-success fileinput-button" style="margin-left: 20px;">
+									<i class="glyphicon glyphicon-plus"></i>
+									<span>添加图片</span>
+									<!-- The file input field used as target for the file upload widget -->
+									<input id="fileupload" class="full_input" type="file" name="img" multiple>
+								</span>
+							</div>
+						</form>
+						<div id="render_image_show"><!-- add selection image --></div>
+					</div>
+					<div class="right-part">
+						<form class="form-horizontal" id="list_server">
+							<div class="control-group">
+								<label class="control-label" for="content">Content</label>
+								<div class="controls">
+									<textarea rows="25" id="content" name="content" style="width: 460px;" placeholder="one by one"></textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<div id="second_step" style="display: none;">
+					<ul class="breadcrumb">
+						<li><a href="#" id="rollback" >First</a> <span class="divider">/</span></li>
+						<li class="active">Second</li>
+					</ul>
+					
+					<div style="clear: both;"></div>
+					
+					<div id="nav_content"></div>
+					<div id="render_check_show_content" style="margin-left: 310px;"></div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- omnibus_main-->
+</div>
+{% endblock %}
+
+{% block js_template %}<!-- js 模板 -->
+{% verbatim %}
+<script id="display_input_img" type="text/x-handlebars-template">
+	{{#each imgs}}
+	<div class="caption" style="max-width: 600px; text-align: center; margin-left:50px; margin-top: 10px;">
+		<img src="{{url}}" style="max-width: 600px;">
+		<h3 style="text-align: center;">{{name}}</h3>
+	</div>
+	{{/each}}
+</script>
+
+<script id="display_nav_item" type="text/x-handlebars-template">
+	<div class="wrapper_nav common_style" style="float: left; width: 300px;">
+		<div class="common_header">
+			<p class="text-center muted" style="">{{e.title}} </br> 成功: {{count}}  总共: {{total}}</p>
+		</div>
+		<div class="nav_content common_content">
+			<ul id="nav_search" class="nav nav-list">
+			{{#each e.list}}
+				<li data="{{id}}"><a href="#" data="{{id}}">{{title}}</a></li>
+			{{/each}}
+			</ul>
+		</div>
+	</div>
+</script>
+
+<script id="check_show" type="text/x-handlebars-template">
+	<div class="common_style">
+		<div class="common_header">
+			<p class="text-center muted" style="">{{title}}</p>
+		</div>
+		<div class="common_content">
+			<div class="hero-unit" style="width: inherit; margin-left: 20px; margin-right: 20px;">
+				<ul class="unstyled" style="width: 900px; margin-left: 20px;">
+					{{#each lists}}
+					<li id="{{id}}" class="choosen">
+						<div class="result_items">
+							<div class="result_poster">
+								<a class="fill_main_add" href="#">
+									<img src="{{image}}" width="67" height="100" alt="{{title}}">
+								</a>
+							</div>
+							<div class="result_content">
+								<a href="/detail/{{id}}/" target="_blank">
+									<h1>{{title}} {{id}}</h1>
+								</a>
+								<p>{{detail}}</p>
+							</div>
+						</div>
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</script>
+
+{% endverbatim %}
+{% endblock %}
+
+{% block privatejs %}
+{% load static %}
+    <script src="{% static "upload/js/vendor/jquery.ui.widget.js" %}"></script>
+    <script src="{% static "upload/js/jquery.iframe-transport.js" %}"></script>
+    <script src="{% static "upload/js/jquery.fileupload.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/js/jquery.lazyload.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "assets/js/jquery.form.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "multiselect2side/multiselect2side.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/admin/omnibus.js" %}"></script>
+{% endblock %}

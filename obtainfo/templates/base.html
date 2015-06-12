@@ -1,0 +1,642 @@
+{% load static %}<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb" lang="zh-cn">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block SEO %}
+    <title>欧泊影视 - 最专业的电影资讯</title>
+    <meta name="description" content="提供最全的电影资源的检索，适用于百度云，115网盘，360云盘的离线下载，以及迅雷和QQ旋风下载！">
+    {% endblock %}
+    
+    <meta name="360-site-verification" content="7e34bdea13039f0ca084ce1769a1e484" />
+    <meta name="google-site-verification" content="jvkbykub1qr5EHuNQvpxautB38sHF5UetHtofI132R8" />
+    <meta name="baidu-site-verification" content="k8CzGWAVTN" />
+    <meta property="wb:webmaster" content="408454581724bfa0" />
+    
+    <link rel="shortcut icon" href="{% static "zinnia/img/favicon.ico" %}" />
+    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/pure/0.5.0/buttons-min.css">
+    <style type="text/css">
+        /**
+         * base css
+         */
+        body {
+          /*padding-top: 20px;
+          padding-bottom: 60px;*/
+          /*background: url(bc.png) repeat-x scroll 0 0 #f3f2f3;*/
+          background: url(http://img01.taobaocdn.com/imgextra/i1/495498642/T2LF7DXDJXXXXXXXXX_!!495498642.png) repeat-x scroll 0 0 #f3f2f3;
+        }
+        
+        /* Custom container */
+        .container {
+          margin: 0 auto;
+          max-width: 1000px;
+          min-width: 1000px;
+        }
+        
+        /**
+         * search
+         */
+        .logo_search_notify{
+          height:85px;
+        }
+        .logo{
+            width:200px; 
+            height:80px; 
+            position:relative; 
+            float: left; 
+            display: block;
+            background: url(http://img01.taobaocdn.com/imgextra/i1/495498642/TB2Ny5gXVXXXXXnXpXXXXXXXXXX-495498642.png) 0 0 no-repeat;
+        }
+        .search_box{
+            margin: 0px 0 0 180px;
+            position: relative;
+            width: 750px; 
+            padding: 5px 10px 0 10px;;
+        }
+        .input-append{
+            width: 600px;
+        }
+        .input-append input{
+          height:30px;
+          padding-left:25px;
+          width: 600px;
+        }
+        .input-append .btn{
+          height: 40px;
+        }
+        .input-append .icon-zoom-in{
+          position:relative;
+          left:23px;
+          top:-8px;
+          z-index:999;
+        }
+        .search-query{
+          width:610px;/* when has notify 350px*/
+          padding-bottom: 3px !important; 
+        }
+        .form-search .input-append .btn{
+            border-radius: 0px;
+        }
+        
+        /**
+         * nav nav_bc.png
+         */
+        .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus
+        {
+          background: url(http://img03.taobaocdn.com/imgextra/i3/495498642/T2BX3EXzXXXXXXXXXX_!!495498642.png) repeat-x scroll 0 -80px;
+          color: #ffffff;
+        }
+        .navbar .navbar-inner {
+          background: url(http://img03.taobaocdn.com/imgextra/i3/495498642/T2BX3EXzXXXXXXXXXX_!!495498642.png) repeat-x scroll 0 0;
+          filter: none;
+          padding: 0;
+        }
+        .navbar .nav {
+          margin: 0;
+          display: table;
+          width: 100%;
+        }
+        .navbar .nav li {
+          display: table-cell;
+          width: 1%;
+          background: url(http://img03.taobaocdn.com/imgextra/i3/495498642/T2BX3EXzXXXXXXXXXX_!!495498642.png) 100% -40px no-repeat;
+          margin-right: -200px;
+          float: none;
+        }
+        .navbar .nav .test_active {
+          background: none;
+        }
+        .navbar .nav li a {
+          font: bold 16px/40px "\5FAE\8F6F\96C5\9ED1","\5B8B\4F53",Arial,sans-serif;
+          padding:0;
+          text-align: center;
+          color: #FFF;
+          text-shadow: none;
+        }
+        .navbar .nav li:first-child a {
+          border-left: 0;
+          border-radius: 3px 0 0 3px;
+        }
+        .navbar .nav li:last-child a {
+          border-right: 0;
+          border-radius: 0 3px 3px 0;
+        }
+        .navbar .nav > .last{
+          background: 0;
+        }
+        
+        /**
+         * ten video show boards
+         */
+        .video-board{
+            width: 729px;
+        }
+        .video-board ul{
+            list-style: none;
+            margin: 0px;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 210px;
+        }
+        .video-board li{
+            float:left;
+            width:130px;
+            height:210px;
+            margin-left: 19px;
+        }
+        .video-board li:first-child{
+            margin-left: 0px !important;
+        } 
+        .video-board .vb-item{
+            position:relative;
+            float:left;
+            width:130px;
+            height:210px;
+            margin:0px;
+        }
+        .video-board .vbi-poster{
+            position:relative;
+            display:block;
+            overflow:hidden;
+            height:170px;
+        }
+        .video-board .vbip-img{
+            max-width:130px;
+            max-height:170px;
+            width:130px;
+            height:170px;
+        }
+        .video-board .vbip-icon-shadow{
+            position:absolute;
+            left:0px;
+            top:0px;
+            background:#000;
+            opacity:.3;
+            filter:alpha(opacity=30);
+            display:none;
+            max-width:130px;
+            max-height:170px;
+            width:130px;
+            height:170px;
+        }
+        .video-board .vbip-icon{
+            position:absolute;
+            left: 28px;
+            top: 48px;
+            display:none;
+            max-width:64px;
+            max-height:64px;
+            width:64px;
+            height:64px;
+        }
+        .video-board .vbip-mask{
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:100%;
+            height:22px;
+            _bottom:-2px;
+            background: #000;
+            opacity: .7;
+            filter:alpha(opacity=70);
+        }
+        .video-board .vbip-info {
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:100%;
+            height:22px;
+            overflow:hidden;
+            font:12px/22px 'Microsoft YaHei';
+            color:#BBB;
+            line-height:22px;
+            text-align:center;
+        }
+        .video-board .vbi-title{
+            width:100%;
+            height:22px;
+            overflow:hidden;
+            font:15px/22px 'Microsoft YaHei';
+            color: #333;
+            font-weight: bold;
+            line-height:22px;
+            text-align:center;
+        }
+        
+        /**
+         * share by new_add and hot 
+         */
+        .sidebar {
+            margin-top:20px;
+            border-left:1px solid #ddd;
+            min-height: 875px;
+        }
+        
+        .ranking {
+            padding-left:15px;
+            width:200px;
+            /*height:375px;*/
+        }
+        .ranking h4 {
+            color:#333;
+            font:18px/20px \5fae\8f6f\96c5\9ed1;
+        }
+        .ranklist {
+            list-style:none;
+            margin:0px;
+            *zoom:1;
+        }
+        .ranklist:after {
+            content:"\0020";
+            display:block;
+            height:0;
+            clear:both;
+            overflow:hidden;
+            visibility:hidden;
+        }
+        .ranklist a {
+            color:#333;
+            font:12px/1.5 \5fae\8f6f\96c5\9ed1;
+            font-weight:normal;
+            line-height:12px;
+        }
+        .ranklist li {
+            position:relative;
+            float:left;
+            width:173px;
+            padding-bottom:11px;
+            padding-left:27px;
+            line-height:14px;
+            clear:both;
+        }
+        .ranklist li .no {
+            float:left;
+            display:block;
+            font:12px/1.5 \5fae\8f6f\96c5\9ed1;
+            overflow:hidden;
+            position:absolute;
+            left:0;
+            top:0;
+            width:17px;
+            height:14px;
+            background:#bcbcbc;
+            color:#FFF;
+            text-align:center;
+            line-height:14px;
+            zoom:1;
+            z-index:999;
+        }
+        .ranklist li .no1,.ranklist li .no2,.ranklist li .no3 {
+            background:#fe6e10;
+        }
+        .ranklist li.poster {
+            width:auto;
+            padding-left:0;
+        }
+        .ranklist li.poster dl {
+            float:left;
+            width:200px;
+            margin:0px;
+            margin-top:14px;
+        }
+        .ranklist li.poster dl dt {
+            width:200px;
+            height:92px;
+        }
+        .ranklist li.poster dl dt a {
+            display:block;
+            position:relative;
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+        .ranklist li.poster dl dt a img {
+            width:200px;
+            height:92px;
+        }
+        .ranklist li.poster dl dt a .s-title,.ranklist li.poster dl dt a .v-all-bg {
+            display:block;
+            position:absolute;
+            bottom:0;
+            left:0;
+            width:100%;
+            text-align:center;
+            color:#fff;
+            height:22px;
+            line-height:22px;
+            z-index:5;
+        }
+        .ranklist li.poster dl dt a .v-all-bg {
+            background-color:#000;
+            opacity:.6;
+            filter:alpha(opacity=60);
+            z-index:1;
+        }
+        .ranklist li.poster dl dt a .s-rating {
+            position:absolute;
+            bottom:1px;
+            right:5px;
+            width:26px;
+            color:#f96d00;
+            font-size:22px;
+            line-height:22px;
+            z-index:5;
+            *bottom:-1px;
+        }
+        .ranklist li.poster dl dt a .s-rating b {
+            position:absolute;
+            top:-3px;
+            right:8px;
+            font-size:20px;
+        }
+        .ranklist li.poster dl dt a .s-rating span {
+            position:absolute;
+            top:-2px;
+            right:0;
+            font-size:14px;
+        }
+        .ranklist li.poster dl dd {
+            color:#888;
+            line-height:19px;
+        }
+        .ranklist li.poster dl dd.s-title {
+            padding:5px 0 2px;
+        }
+        .ranklist li.list .s-actor,.ranklist li.list .s-update {
+            position:absolute;
+            top:0;
+            right:0;
+            height:14px;
+            color:#999;
+            font:12px/1.5 \5B8B\4F53;
+            line-height:14px;
+        }
+        .ranklist li .no1 {
+            display:block;
+            width:15px;
+            height:20px;
+            background:url(http://img02.taobaocdn.com/imgextra/i2/495498642/T2EnoGXtpXXXXXXXXX_!!495498642.png);
+            /*background:url(http://obtainfo-first.qiniudn.com/rankicon_06a0e5d8.png);*/
+            _background:0;
+            /*_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://obtainfo-first.qiniudn.com/rankicon_06a0e5d8.png");*/
+            _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img02.taobaocdn.com/imgextra/i2/495498642/T2EnoGXtpXXXXXXXXX_!!495498642.png");
+        }
+        
+        #footer {
+            margin-top: 20px;
+            height: 60px;
+        }
+        #footer a:hover {
+            color: #f02129;
+            text-decoration: none;
+        }
+        #footer h3{
+            color: #959a9e;
+        }
+        /* Lastly, apply responsive CSS fixes as necessary */
+        @media (max-width: 767px) {
+          #footer {
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+        }
+    </style>
+    {% block privatecss %}
+    {% endblock %}
+    
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        window.ismobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+        var Prompt = true;
+    </script>
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="http://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script>var Prompt = false;</script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="top-header-wrapper" style="margin: 0px; font-size: 13px; background: #EEE;">
+        <div class="top-header-manifesto" style="margin: 0 auto 2px; width: 1000px; height: 24px;">
+            <p style="margin: auto; float: left;">
+                欢迎大家来到欧泊影视，我们为大家提供了中文最全最新最快的电影资讯！欢迎大家 Ctrl+D 收藏我们的网站！关注我们的新浪微博：
+            </p>
+            <wb:follow-button uid="1702816511" type="red_1" width="67" height="24" ></wb:follow-button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="masthead">
+            <div class="logo_search_notify">
+                <a class="logo" href="http://www.obtainfo.com/" title="欧泊影视"></a>
+                <div class="search_box">
+                    <form action="/search/" method="get" class="navbar-form form-search" style="height: 50px;">
+                        <div class="input-append"> 
+                            <i class="icon-zoom-in"></i>
+                            <input name='search' id='search-box' type="text" placeholder="请输入电影的名字或者演员的名字或者IMDB编号或者豆瓣编号">
+                            <button type="submit" id='search-box-btn' class="btn">影视搜索</button>
+                        </div>
+                    </form>
+                    <p style="font-size: 12px; line-height: 20px; height: 18px; color: #777; margin: 0 0 0 30px;">
+                        大家可以输入IMDB编号：<span style="color: #fe6e10;">tt0048641</span>，
+                        豆瓣编号（前面要加dd）：<span style="color: #fe6e10;">dd1298494</span>，进行查询相关电影。
+                        <a href="http://www.obtainfo.com/article/361931748/" target="_blank">详细使用请点击</a>
+                    </p>
+                </div>
+            </div> <!-- logo_search_notify --> 
+            <div style="clear:both;"></div>
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <ul id="global_nav" class="nav">
+                            <li><a href="/">电影</a></li>
+                            <li><a href="/retrieve/" data="retrieve" style="color: #da4f49;">筛选</a></li>
+                            <li><a href="/index/genre-喜剧/" data="喜剧">喜剧</a></li>
+                            <li><a href="/index/genre-恐怖/" data="恐怖">恐怖</a></li>
+                            <li><a href="/index/genre-爱情/" data="爱情">爱情</a></li>
+                            <li><a href="/index/genre-动作/" data="动作">动作</a></li>
+                            <li><a href="/index/genre-科幻/" data="科幻">科幻</a></li>
+                            <li><a href="/index/genre-战争/" data="战争">战争</a></li>
+                            <li><a href="/index/genre-犯罪/" data="犯罪">犯罪</a></li>
+                            <li><a href="/index/genre-动画/" data="动画">动画</a></li>
+                            <li><a href="/index/genre-剧情/" data="剧情">剧情</a></li>
+                            <li><a href="/index/genre-冒险/" data="冒险">冒险</a></li>
+                            <li><a href="/index/genre-传记/" data="传记">传记</a></li>
+                            <li><a href="/index/genre-奇幻/" data="奇幻">奇幻</a></li>
+                            <li class="last"><a href="/index/genre-悬疑/" data="悬疑">悬疑</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- navbar --> 
+        </div> <!-- masthead -->
+        
+        {% block notify-banner %}
+        {% endblock %}
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% block footer %}
+    <div class="row-fluid" style="margin-top: 25px; width: 100%; height: 320px; background: #FFF;">
+        <div id="footer">
+            <div class="container">
+                <div class="site-link" style="width: 120px; float: left; margin-left: 40px;">
+                    <h3>站内索引</h3>
+                    <ol class="unstyled">
+                        <li><a target="_blank" href="http://www.obtainfo.com/flatpages/about/">关于</a></li>
+                        <li><a target="_blank" href="http://www.obtainfo.com/flatpages/contact/">联系我们</a></li>
+                        <li><a target="_blank" href="/admin/">管理站点</a></li>
+                        <li><a target="_blank" href="/sitemap.xml">网站地图</a></li>
+                        <li><a target="_blank" href="https://github.com/pczhaoyun/obtainfo">项目主页</a></li>
+                    </ol>
+                </div>
+                
+                <div class="tech-link" style="float: left; margin-left: 60px; width: 120px;">
+                    <h3>构建本站</h3>
+                    <ol class="unstyled">
+                        <li><a target="_blank" href="https://www.python.org/" rel="nofollow">Python</a></li>
+                        <li><a target="_blank" href="https://www.djangoproject.com/" rel="nofollow">Django</a></li>
+                        <li><a target="_blank" href="http://scrapy.org/" rel="nofollow">Scrapy</a></li>
+                        <li><a target="_blank" href="http://www.mongodb.org/" rel="nofollow">MongoDB</a></li>
+                        <li><a target="_blank" href="http://www.postgresql.org/" rel="nofollow">Postgresql</a></li>
+                        <li><a target="_blank" href="https://www.linode.com/?r=014377cc86102db8cbb68ef0f0ce5f93ff5f95b3" rel="nofollow">Linode VPS</a></li>
+                    </ol>
+                </div>
+                <div class="other-link" style="float: left; margin-left: 60px;">
+                    <h3 style="text-align: center;">站点推荐</h4>
+                    <div class="ol-wrapper">
+                        <ol class="unstyled" style="float: left; width: 120px;">
+                            <li><a target="_blank" href="http://www.bttiantang.com/" rel="nofollow">BT天堂</a></li>
+                            <li><a target="_blank" href="http://www.yyets.com/" rel="nofollow">人人影视</a></li>
+                            <li><a target="_blank" href="http://www.qvocd.org/" rel="nofollow">电骡</a></li>
+                            <li><a target="_blank" href="http://bbs.mopiaoyao.com/" rel="nofollow">殁世天下</a></li>
+                            <li><a target="_blank" href="http://www.2tu.cc/" rel="nofollow">迅播影院</a></li>
+                            <li><a target="_blank" href="http://www.bitfish8.com/" rel="nofollow">比特鱼</a></li>
+                            <li><a target="_blank" href="http://www.xzshoufa.com/" rel="nofollow">下载首发站</a></li>
+                        </ol>
+                        
+                        <ol class="unstyled" style="float: left; width: 120px; margin-left: 40px;">
+                            <li><a target="_blank" href="http://www.ed2000.com/" rel="nofollow">Ed2000</a></li>
+                            <li><a target="_blank" href="http://simplecd.me/" rel="nofollow">Simplecd</a></li>
+                            <li><a target="_blank" href="http://www.somag.net/" rel="nofollow">搜磁力链</a></li>
+                            <li><a target="_blank" href="http://bbs.1lou.com/" rel="nofollow">BT之家</a></li>
+                            <li><a target="_blank" href="http://www.dy2018.com/" rel="nofollow">电影天堂</a></li>
+                            <li><a target="_blank" href="http://www.icili.com/" rel="nofollow">爱磁力</a></li>
+                            <li><a target="_blank" href="http://www.bestxl.com/index.php" rel="nofollow">老调网</a></li>
+                        </ol>
+                        
+                        <ol class="unstyled" style="float: left; width: 120px; margin-left: 40px;">
+                            <li><a target="_blank" href="http://www.piaohua.com/" rel="nofollow">飘花资源网</a></li>
+                            <li><a target="_blank" href="http://www.yanzibt.com/" rel="nofollow">燕子BT</a></li>
+                            <li><a target="_blank" href="http://www.tbmovie.com/" rel="nofollow">经典电影</a></li>
+                            <li><a target="_blank" href="http://www.16movies.cn/" rel="nofollow">一路电影网</a></li>
+                            <li><a target="_blank" href="http://www.52fenxiang.net/" rel="nofollow">吾爱分享</a></li>
+                            <li><a target="_blank" href="http://www.hdmeiju.com/main.php" rel="nofollow">海盗美剧</a></li>
+                            <li><a target="_blank" href="http://www.tvboxnow.com/index.php" rel="nofollow">公仔箱</a></li>
+                        </ol>
+                        
+                        <ol class="unstyled" style="float: left; width: 120px; margin-left: 40px;">
+                            <li><a target="_blank" href="http://bbs.hdbird.com/index.php" rel="nofollow">飞鸟娱乐</a></li>
+                            <li><a target="_blank" href="http://www.xuandy.com/" rel="nofollow">炫影网</a></li>
+                            <li><a target="_blank" href="http://dianying.fm/" rel="nofollow">电影FM</a></li>
+                            <li><a target="_blank" href="http://www.tiantianbt.net/" rel="nofollow">天天BT</a></li>
+                            <li><a target="_blank" href="http://www.hdseed.net/" rel="nofollow">高清影视种子</a></li>
+                            <li><a target="_blank" href="http://www.kuyi.tv/" rel="nofollow">酷艺网</a></li>
+                            <li><a target="_blank" href="http://www.xunmiweb.com/" rel="nofollow">寻觅网</a></li>
+                        </ol> 
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+                <p class="muted credit" style="text-align: center;">
+                    Copyright @ 2014-2014 Obtainfo-www.obtainfo.com. All Rights Reserved.
+                    </br>
+                    本站内容收集于互联网，如果有侵权内容、不妥之处，请联系我们删除。敬请谅解！本站仅供测试和学习交流，请大家支持正版。
+                    {% if not user.is_authenticated %}
+                    <script type="text/javascript">
+                    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ffa88091ef440456615e2d1870b7dac8a' type='text/javascript'%3E%3C/script%3E"));
+                    </script>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+    <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://cdn.staticfile.org/jquery.lazyload/1.9.1/jquery.lazyload.min.js" type="text/javascript"></script>
+    <script src="http://cdn.staticfile.org/underscore.js/1.7.0/underscore-min.js" type="text/javascript"></script>
+    <script src="http://cdn.staticfile.org/zclip/1.1.2/jquery.zclip.min.js" type="text/javascript"></script>
+    <script src="http://cdn.staticfile.org/handlebars.js/1.3.0/handlebars.min.js" type="text/javascript"></script>
+    <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+    
+    <script type="text/javascript">
+        
+        //回调函数，用于获取用户当前选择的文字
+        function show(str){
+            if (str != '') {
+                $('#search-box-btn').trigger('click');
+            }
+        }
+        
+        var params = {
+            "XOffset":0, //提示框位置横向偏移量,单位px
+            "YOffset":0, //提示框位置纵向偏移量,单位px
+            "width":533, //提示框宽度，单位px
+            "fontColor":"#f70", //提示框文字颜色
+            "fontColorHI":"#FFF",	//提示框高亮选择时文字颜色
+            "fontSize":"12px",		//文字大小
+            "fontFamily":"宋体",	//文字字体
+            "borderColor":"gray", 	//提示框的边框颜色
+            "bgcolorHI":"#03c",		//提示框高亮选择的颜色
+            "sugSubmit":false		//在选择提示词条是是否提交表单
+        };
+        
+        if (Prompt) {
+            BaiduSuggestion.bind("search-box", params, show);
+        }
+    </script>
+
+    {% block privatejs %}
+    {% endblock %}
+    <script type="text/javascript">
+    $(function () {
+        var url = location.pathname.split('/'), genre="default";
+        for (var i in url) {
+            if (url[i].match("genre")) {
+                genre = decodeURIComponent(url[i].split('-')[1]);
+                break;
+            }else if (url[i].match("retrieve")) {
+                genre = 'retrieve';
+            }
+        }
+        
+        if (genre == "default") {
+            $("#global_nav li:first").addClass('active');
+        }else{
+            $("#global_nav a").each(function () {
+                var href = $(this).attr('data');
+                if (genre === href) {
+                    var li = $(this).closest('li');
+                    li.addClass('active');
+                    li.prev().css({'background':'none'});
+                }
+            });   
+        }
+        
+        /* setTimeout("$('#version-notify').alert('close')", 3000); */
+    });
+    </script>
+
+</body>
+</html>

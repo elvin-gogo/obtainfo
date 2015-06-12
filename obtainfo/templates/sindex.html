@@ -1,0 +1,70 @@
+{% extends "hot_cache_base.html" %}
+{% load obtainfo_tags static %}
+{% block SEO %}
+<title>obtainfo - {{title}}</title>
+<meta name="description" content="{{title}}">
+{% endblock %}
+
+{% block privatecss %}
+    <link href="{% static "css/sindex.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content_entry %}
+    <div style="margin-top: 20px;">
+        <ul class="unstyled">
+            {% for result in m.results%}
+            <li>
+                <div class="movie">
+                    <div class="poster">
+                        <a href="/selection/{{result | oid }}/">
+                            <img class="poster_img lazy" data-original="{{result.pic|pic}}" alt="{{result.title}}" width="120" height="160">
+                        </a>
+                    </div>
+                    <div class="detail">
+                        <a href="/selection/{{result | oid }}/"> <h4>{{result.title}}</h4> </a>                        
+                        <div>
+                            <p class="desc">更 新：</p>
+                            <p class="content">{{ result.addtime |date:"Y M d D"  }}</p>
+                        </div>
+                        
+                        {% if result.desc %}
+                        <div >
+                            <p class="desc">简  介：</p>
+                            <p class="content">共收录 {{ result.count }} 部影片。{{result.desc | truncatechars:150}}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    {% with results=m.pages%}
+    <div class="pagination pagination-centered" >
+      <ul>
+        {% if results.has_previous %}
+            <li><a title='上一页' href='?page={{results.previous_page_number}}{% if m.search %}&search={{m.search}}{% endif%}'><span>&lt;</span></a></li>
+        {% endif %}
+        {% for page in results.paginator.page_range_ext %}
+            {% if page = results.number %}
+                <li class="active"><a title='当前页:{{ page }}'><span>{{ page }}</span></a></li>
+            {% else %}
+                <li><a href='?page={{ page }}{% if m.search %}&search={{m.search}}{% endif%}' title='{{ page }}'><span>{{ page }}</span></a></li>
+            {% endif %}
+        {% endfor %}
+        {% if results.has_next %}
+            <li><a title='下一页' href='?page={{ results.next_page_number }}{% if m.search %}&search={{m.search}}{% endif%}'><span>&gt;</span></a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endwith %}
+{% endblock %}
+
+{% block privatejs %}
+    <script>
+        $("img.lazy").lazyload({
+            effect : "fadeIn"
+        });
+    </script>
+{% endblock %}

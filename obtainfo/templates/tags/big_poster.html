@@ -1,0 +1,18 @@
+<div id="bg-carousel" class="big_poster carousel slide">
+	<ol class="carousel-indicators">
+		{% for li in big_poster %}
+		<li data-target="#play" data-slide-to="{{forloop.counter0}}" {%if forloop.first %}class="active"{% endif %}></li>
+		{% endfor %}
+	</ol>
+	<div id="play_list" class="carousel-inner">
+		{% for poster in big_poster %}
+		<div class="item {%if forloop.first %}active{%endif%}">
+			<a class="big-poster-movie-link" href="{{poster.link}}">
+				<img class="lazy img-responsive" data-original="{{poster.image}}" alt="{{poster.title}}">
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+	<a class="jcarousel-control-prev" href="#bg-carousel" data-slide="prev"></a>
+	<a class="jcarousel-control-next" href="#bg-carousel" data-slide="next"></a>
+</div>

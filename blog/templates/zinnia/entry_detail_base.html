@@ -1,0 +1,94 @@
+{% extends "zinnia/base.html" %}
+{% load i18n comments zinnia_tags %}
+{% load cycle from future %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+
+{% block entry-content %}
+	{% include object.content_template with object_content=object.html_content %}
+{% endblock entry-content %}
+
+{% block entry-comments %}
+<div class="clear"></div>
+
+<div id="comments">
+	<div id="cmtswitcher">
+		<a id="commenttab" class="curtab" href="javascript:void(0);">{% trans "Comments" %} ({{object.comment_count}})</a>
+		<div class="clear"></div>
+	</div>
+  
+	<div class="comment_div">
+		{% if object.comments_are_open %}
+			<div id="comment_head">看到这么好的文章不留言真是太可惜啦！<span>
+				{% if not object.comment_count %}
+					第一个评论！
+				{%endif%}
+			</span></div>
+		{% else %}
+			<div id="comment_head">{% trans "Comments are closed." %}</div>
+		{% endif %}
+		
+		{% if object.comment_count %}
+			{% with comment_list=object.comments %}
+			{% block comments-loop %}
+			<ul id="thecomments" class="commentlist">
+				{% for comment in comment_list %}
+				<li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}" class="comment">
+					<div class="comment_body">
+						<div class="comment_meta">
+							<div class="avatar" style="background-image:url('{% get_gravatar comment.email 40 "G" %}')"></div>
+							<span itemprop="author">{{ comment.name }}</span>
+						</div>
+						<div class="comment_content">
+							<span itemprop="reviewBody">
+								{% block comment-content %}
+								{{ comment.comment|linebreaks }}
+								{% endblock comment-content %}
+							</span>
+							<div class="comm_meta_div">
+								{% block comment-info %}
+								<p class="comment-info" style="float: right;">
+									{% if comment.url %}
+										<a href="{{ comment.url }}" rel="external nofollow" class="fn url">{{ comment.name }}</a>
+									{% else %}
+										<span class="fn">{{ comment.name }}</span>
+									{% endif %}
+									
+									{% trans "on" context "on date" %}
+									<abbr class="comment-published" title="{{ comment.submit_date|date:"c" }}">
+									{{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}
+									</abbr>
+								</p>
+								{% endblock comment-info %}
+							</div>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+			{% endblock comments-loop %}
+			{% endwith %}
+		{% endif %}
+	</div>
+</div>
+{% endblock entry-comments %}
+
+{% block entry-comments-form %}
+{% if object.comments_are_open %}
+	{% render_comment_form for object %}
+{% endif %}
+{% endblock entry-comments-form %}
+
+{% endblock content %}
+
+{% block admin-tools %}
+{% if perms.zinnia.change_entry %}
+<li>
+	<a href="{% url 'admin:zinnia_entry_change' object.pk %}" title="{% trans "Edit the entry" %}">
+		{% trans "Edit the entry" %}
+	</a>
+</li>
+{% endif %}
+{% endblock admin-tools %}

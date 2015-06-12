@@ -1,0 +1,160 @@
+<div id="resource" style="min-height:100px; margin-top:25px;">
+    {% with resource=m.resource %}
+    <ul class="nav nav-pills" id="resource-tab">
+        {% ifequal resource.permission 'F' %}
+        <li><a href="#permission-resource" data-type='permission' data-toggle="tab"><strong>版权申明</strong></a></li>
+        {% endifequal %}
+        
+        {% if resource.online %}
+        <li><a href="#online-resource" data-type='online' data-toggle="tab"><strong>在线资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.netdisk %}
+        <li><a href="#netdisk-resource" data-type='netdisk' data-toggle="tab"><strong>网盘资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.cam %}
+        <li><a href="#cam-resource" data-type='cam' data-toggle="tab"><strong>尝鲜资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.dvd %}
+        <li><a href="#dvd-resource" data-type='dvd' data-toggle="tab"><strong>普清资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.hd %}
+        <li><a href="#hd-resource" data-type='hd' data-toggle="tab"><strong>高清资源</strong></a></li>
+        {% endif %}
+        
+        {% if resource.stereo %}
+        <li><a href="#stereo-resource" data-type='stereo' data-toggle="tab"><strong>3D资源</strong></a></li>
+        {% endif %}
+    </ul>
+    
+    <div class="tab-content" id="tab-content">
+        {% ifequal resource.permission 'F' %}
+        <div class="tab-pane" id="permission-resource">
+            <table class="table table-hover" style="font-size: 13px;">
+                <tbody>
+                    <tr>
+                        <td>由于接受到版权方的要求，我们要把相关下载地址删除。您可以选择在线观看，或者百度云观看。
+                        或者把下载地址上的名字复制到百度里进行搜索下载。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endifequal %}
+        
+        <div class="tab-pane" id="online-resource">
+            <table class="table table-hover" style="font-size: 13px;">
+                <thead>
+                    <tr><th>站点</th><th>地址</th></tr>
+                </thead>
+                <tbody>
+                    {% for site in resource.online %}
+                    <tr>
+                        <td class="table-fix-style">
+                            <img width="16" height="16" align="absmiddle" src="{{site.logo}}">
+                        </td>
+                        <td class="table-resource">
+                            <div><a href="{{site.link}}" target="_blank" rel="nofollow">{{site.link}}</a></div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="netdisk-resource">
+            <div class="resource-info-wrapper">
+                <ol>
+                    {% for site in resource.netdisk %}
+                    <li>
+                        <a href="{{site.link}}" target="_blank" rel="nofollow">{{site.name}}&nbsp;：&nbsp;{{site.link}}</a>
+                        {% if site.code %}&nbsp;&nbsp;密码：<span style="color: #fe6e10">{{site.code}}</span>{% endif %}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <div class="tab-pane" id="stereo-resource">
+            <table class="table table-hover table-striped" style="font-size: 12px; width: 728px;">
+                <tbody>
+                    {% for r in resource.stereo %}
+                    <tr style="border-top: none !important;">
+                        <td class="table-fix-style"><p style="width: 50px; font-size: 12px;">{{r.size}}</p></td>
+                        <td class="table-resource">
+                            <div style="width: 500px;">
+                                {% ifequal resource.permission 'F' %}
+                                <p class="downloads">{{r.name}}</a>
+                                {% else %}
+                                <a class="downloads" href="/download/?c=stereo&uid={{r.uid}}" target="_blank" rel=nofollow>{{r.name}}</a>
+                                {% endifequal %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="hd-resource">
+            <table class="table table-hover table-striped" style="font-size: 12px; width: 728px;">
+                <tbody>
+                    {% for r in resource.hd %}
+                    <tr style="border-top: none !important;">
+                        <td class="table-fix-style"><p style="width: 50px; font-size: 12px;">{{r.size}}</p></td>
+                        <td class="table-resource">
+                            <div style="width: 500px;">
+                                {% ifequal resource.permission 'F' %}
+                                <p class="downloads">{{r.name}}</a>
+                                {% else %}
+                                <a class="downloads" href="/download/?c=hd&uid={{r.uid}}" target="_blank" rel=nofollow>{{r.name}}</a>
+                                {% endifequal %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="dvd-resource">
+            <table class="table table-hover table-striped" style="font-size: 12px; width: 728px;">
+                <tbody>
+                    {% for r in resource.dvd %}
+                    <tr style="border-top: none !important;">
+                        <td class="table-fix-style"><p style="width: 50px; font-size: 12px;">{{r.size}}</p></td>
+                        <td class="table-resource">
+                            <div style="width: 500px;">
+                                {% ifequal resource.permission 'F' %}
+                                <p class="downloads">{{r.name}}</a>
+                                {% else %}
+                                <a class="downloads" href="/download/?c=dvd&uid={{r.uid}}" target="_blank" rel=nofollow>{{r.name}}</a>
+                                {% endifequal %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="cam-resource">
+            <table class="table table-hover table-striped" style="font-size: 12px; width: 728px;">
+                <tbody>
+                    {% for r in resource.cam%}
+                    <tr style="border-top: none !important;">
+                        <td class="table-fix-style"><p style="width: 50px; font-size: 12px;">{{r.size}}</p></td>
+                        <td class="table-resource">
+                            <div style="width: 500px;">
+                                {% ifequal resource.permission 'F' %}
+                                <p class="downloads">{{r.name}}</a>
+                                {% else %}
+                                <a class="downloads" href="/download/?c=cam&uid={{r.uid}}" target="_blank" rel=nofollow>{{r.name}}</a>
+                                {% endifequal %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endwith %}
+</div>

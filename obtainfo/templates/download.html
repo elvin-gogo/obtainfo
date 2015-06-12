@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load obtainfo_tags static %}
+
+{% block privatecss %}
+<link href="{% static "css/detail.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block notify-banner %}
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid" style="background:#FFF; min-height:500px;">
+    <div class="span12">
+        <div class="resource-detail-wrapper" style="width: 700px; margin: 10px auto;">
+            <h3 class="tips" style="margin: 10px auto; width: {% if magnet %}600px;{% else %}400px;{% endif %}">
+                这是一个磁力链接，请点击链接或等待BT种子
+            </h3>
+            
+            <div id="alert-download" class="alert" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                下载链接已经复制到粘贴板，请使用迅雷或者QQ旋风下载；或者使用百度云离线下载，在线观看。
+            </div>
+            
+            {% if magnet %}
+            <div class="well" style="margin: 10px auto;">
+                <a class="link" href="{{link}}"><p style="word-break:break-all;">{{link}}</p></a>
+                <div style="margin-top: 20px;">
+                    <button id="copy" class="btn btn-primary" type="button">点击复制到粘贴板</button>
+                    {% if torrent %}
+                    <form action="/torrent/" method="post" id="add-product-form" style="display: none;">
+                        {% csrf_token %}
+                        <input class="name" name='name' type='hidden' value=''>
+                        <input class="title" name='title' type='hidden' value='{{name}}'>
+                        <input class="urn" name='urn' type='hidden' value='{{urn}}'>
+                        <input class="link" name='link' type='hidden' value="{{torrent}}">
+                    </form>
+                    <a id="torrent-download" class="downloads btn btn-success" type="button">点击下载BT种子</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <div class="well" style="margin: 10px auto;">
+                <a class="link" href="{{link}}"><p style="word-break:break-all;">{{link}}</p></a>
+                <div style="margin-top: 20px;">
+                    <button id="copy" class="btn btn-primary" type="button">点击复制到粘贴板</button>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="well" style="margin: 10px auto 40px;;">
+                <h4>说明</h4>
+                <ol>
+                    <li>您可以手动复制链接地址或者点击链接地址进行下载</li>
+                    <li>手机用户请等待BT种子准备好，这样方便使用百度云等工具进行离线下载。</li>
+                    <li>如果等待时间过长没有显示（点击下载BT种子），请使用磁力链下载您要的资源。</li>
+                    <li>BT种子需要后台服务器去相关种子库查询，然后缓存到服务器上，因此需要比较长的时间。</li>
+                    <li>由于服务器性能原因，桌面浏览器不再提供BT种子下载服务！</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
+{% block privatejs %}
+<SCRIPT type=text/javascript><!--
+var i_flash;
+var v_flash;
+// Netscape 
+if (navigator.plugins) {
+for (var i=0; i < navigator.plugins.length; i++) {
+if (navigator.plugins[i].name.toLowerCase().indexOf("shockwave flash") >= 0) {
+i_flash = true;
+v_flash = navigator.plugins[i].description.substring(navigator.plugins[i].description.toLowerCase().lastIndexOf("flash ") + 6, navigator.plugins[i].description.length);
+}
+}
+}
+// --></SCRIPT>
+
+<SCRIPT type=text/vbscript><!--
+//IE
+on error resume next
+set f = CreateObject("ShockwaveFlash.ShockwaveFlash")
+if IsObject(f) then
+i_flash = true
+v_flash = hex(f.FlashVersion())
+end if
+// --></SCRIPT> 
+<script src="{% static "js/detail.new.js?v2" %}" type="text/javascript"></script>
+{% if not magnet %}
+<script>
+$(document).ready(function(){
+    var count = 5;
+    $(".tips").text("正在为您打开链接，请等待" + count + "秒......");
+    count = count - 1;
+    
+    timerId = setInterval(function()
+    {
+        $(".tips").text("正在为您打开链接，请等待" + count + "秒......");
+        if (count == 0) {
+            clearInterval(timerId);
+            window.location.href = "{{link}}";
+        }
+        count = count - 1;
+    }, 1000);
+    
+    $(".link").click(function(e){
+        $(".tips").text("正在为您打开链接，请等待" + 0 + "秒......");
+        clearInterval(timerId);
+    });
+});
+</script>
+{% endif %}
+{% endblock %}

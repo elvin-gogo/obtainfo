@@ -1,0 +1,96 @@
+<div class="tab-pane" id="episode-pane" style="min-height: 2000px;">
+    <div class="episode-start-form-wrapper" style="border: dotted 1px; margin-bottom: 10px;">
+        <form class="form-horizontal" style="margin-top: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="episode-crawl-source">From</label>
+                <div class="controls">
+                    <input type="text" id="episode-crawl-source" placeholder="crawl source" style="width: 360px;">
+                    <button id="episode-start-button" class="btn">start</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="render-episode-resource"></div>
+</div>
+
+{% verbatim %}
+<script id="episode-block-template" type="text/x-handlebars-template">
+<div class="episode-add-block"><!-- 单个抓取站点的整体模板 -->
+    <div class="episode-start-form-wrapper" style="border-bottom: dotted 1px;">
+        <form class="form-horizontal" style="margin-top: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="scrapy-source">From</label>
+                <div class="controls">
+                    <input type="text" placeholder="crawl source" style="width: 360px;" value={{from}}>
+                    <button id="episode-delete-button-{{id}}" class="btn">delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="episode-detail-style-wrapper">
+        <div class="episode-nav-wrapper" style="border-bottom: dotted 1px;">
+            <ul id="episode-tab-{{id}}" class="nav nav-pills" style="margin: 10px;">
+                <li><a id="episode-new-group-{{id}}" data-id="{{id}}" href="#">+</a></li>
+            </ul>
+        </div>
+        <div id="episode-detail-{{id}}" class="episode-detail"></div>
+    </div>
+</div>
+</script>
+{% endverbatim %}
+
+{% verbatim %}
+<script id="episode-tab-template" type="text/x-handlebars-template">
+{{#each items}} <!-- 资源组 -->
+    <li class="episode-tab-items"><a href="#{{id}}" data-id="{{id}}" data-toggle="tab">{{id}}</a></li>
+{{/each}}
+</script>
+{% endverbatim %}
+
+{% verbatim %}
+<script id="episode-detail-template" type="text/x-handlebars-template">
+<div id="episode-detail-show-{{id}}" class="episode-detail-show"> <!-- 资源分集详情 -->
+    {{#each episode }}
+    <button class="episode-button pure-button" data="{{num}}">{{num}}</button>
+    {{/each}}
+</div>
+<div class="episode-per-add-form-wrapper" style="border-bottom: dotted 1px;">
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="quality-{{id}}">Info</label>
+            <div class="controls">
+                <input type="text" id="quality-{{id}}" placeholder="quality" style="width: 60px;">
+                <input type="text" id="size-{{id}}" placeholder="size" style="width: 40px;">
+                <input type="text" id="name-{{id}}" placeholder="name" style="width: 300px;">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="link-{{id}}">Link</label>
+            <div class="controls">
+                <input type="number" id="current-{{id}}" style="width: 60px;" value="{{current}}" placeholder="episode"/>
+                <input type="text" id="link-{{id}}" placeholder="link" style="width: 357px;">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Action</label>
+            <div class="controls">
+                <button class="btn" id="episode-add-add-{{id}}">Add</button>
+                <button class="btn" id="episode-add-delete-{{id}}">Delete</button>
+                <button class="btn" id="episode-add-reset-{{id}}">Reset</button>
+                <button class="btn" id="episode-add-ed2k-{{id}}">Ed2k</button>
+                <span class="btn fileinput-button">
+                    <span>Torrent</span>
+                    <input id="episode-add-bt-{{id}}" type="file" name="bt" multiple>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+</script>
+{% endverbatim %}
+
+{% verbatim %}
+<script id="episode-button-template" type="text/x-handlebars-template">
+    <button class="episode-button pure-button" data="{{num}}">{{num}}</button>
+</script>
+{% endverbatim %}

@@ -1,0 +1,138 @@
+{% extends "putty.html" %}{% load static i18n %}
+
+{% block privatecss %}
+<link rel="stylesheet" href="{% static "upload/css/jquery.fileupload.css" %}">
+<link href="{% static "switch/bootstrap-switch.min.css" %}" rel="stylesheet" type="text/css">
+<link href="{% static "putty/css/putty.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="raw_show">
+        <div class="check-control" style="margin-bottom: 20px;">
+            <div class="btn-group">
+                <button id="match-reserve" class="btn btn-inverse match-job">{% trans "reserve" %}</button>
+                <button id="match-block" class="btn btn-danger match-job">黑名单</button>
+                <button id="match-delete" class="btn btn-warning match-job">删除</button>
+                <button id="match-resolve" class="btn btn-info">解析</button>
+                <button id="match-load" class="btn btn-success">加载</button>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <textarea id='match-desc' rows="37" style="width: 460px;"></textarea>
+    </div>
+
+    <div class="add_main">
+        <div>
+            <button id="title-commit" class="btn btn-danger" style="float: right; margin-right: 10px;">提交</button>
+            <ul class="nav nav-tabs" id="add_main">
+                <li><a href="#detail" data-toggle="tab">详情</a></li>
+                <li><a href="#samesite-pane" data-toggle="tab">来源</a></li>
+                <li><a href="#poster" data-toggle="tab">海报</a></li>
+                <li><a href="#netdisk" data-toggle="tab">网盘</a></li>
+                <li><a href="#complete" data-toggle="tab">全集</a></li>
+                <li><a href="#movie-online-pane" data-toggle="tab">M在线</a></li>
+                <li><a href="#tv-online-pane" data-toggle="tab">T在线</a></li>
+                <li><a href="#episode-pane" data-toggle="tab">分集</a></li>
+            </ul>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="tab-content">
+            <div class="tab-pane" id="samesite-pane"> <!-- same site -->
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="samesite">来源</label>
+                        <div class="controls" style="">
+                            <textarea rows="10" id="samesite" class="full_input"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            {% include "add/detail.html" %}            
+            {% include "add/poster.html" %}
+            {% include "add/online.tv.html" %}
+            {% include "add/online.movie.html" %}
+            {% include "add/netdisk.html" %}
+            {% include "add/complete.html" %}
+            {% include "add/episode.html" %}
+        </div>
+    </div> <!-- add_main-->
+
+    <div class="search_result">
+        <ul class="nav nav-tabs" id="search_result">
+            <li class="active"><a href="#search_result_inside" data-toggle="tab">Inside</a></li>
+            <li><a href="#search_result_douban" data-toggle="tab">Douban</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="search_result_inside">
+                <ul id="inside_result_show" class="unstyled"></ul>
+                {% verbatim %}
+                <script id="inside_show" type="text/x-handlebars-template">
+                {{#each item}}
+                <li id="{{id}}" >
+                    <div class="result_items">
+                        <div class="result_poster">
+                            <a class="fill_main_add" href="#">
+                                <img src="{{image}}" width="67" height="100" alt="{{title}}">
+                            </a>
+                        </div>
+                        <div class="result_content">
+                            <a href="/detail/{{id}}/" target="_blank"> <h1>{{title}}</h1> </a>
+                            <p>{{detail}}</p>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+                </script>
+                {% endverbatim %}
+            </div>
+            
+            <div class="tab-pane" id="search_result_douban">
+                <ul id="douban_result_show" class="unstyled"></ul>
+                {% verbatim %}
+                <script id="douban_show" type="text/x-handlebars-template">
+                {{#each item}}
+                <li id="{{id}}" >
+                    <div class="result_items">
+                        <div class="result_poster">
+                            <a class="fill_main_add" href="#">
+                                <img src="{{image}}" width="67" height="100" alt="{{title}}">
+                            </a>
+                        </div>
+                        <div class="result_content">
+                            <a href="http://movie.douban.com/subject/{{id}}/" target="_blank">
+                                <h1>{{title}}</h1>
+                            </a>
+                            <p>{{detail}}</p>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+                </script>
+                {% endverbatim %}
+            </div>
+        </div>
+    </div><!--search_result-->
+</div>
+{% endblock %}
+
+{% block privatejs %}
+    <script type="text/javascript">var collection = location.pathname.split('/')[2];</script>
+    
+    <script type="text/javascript" src="{% static "upload/js/vendor/jquery.ui.widget.js" %}"></script>
+    <script type="text/javascript" src="{% static "upload/js/jquery.iframe-transport.js" %}"></script>
+    <script type="text/javascript" src="{% static "upload/js/jquery.fileupload.js" %}"></script>
+    <script type="text/javascript" src="{% static "switch/bootstrap-switch.min.js" %}"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/underscore.js/1.7.0/underscore-min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/underscore.string/2.3.3/underscore.string.min.js"></script>
+    <!-- local -->
+    <script type="text/javascript" src="{% static "putty/js/add/add.detail.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add/add.online.movie.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add/add.online.tv.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add/add.netdisk.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add/add.poster.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add/add.complete.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add/add.episode.js" %}"></script>
+    <script type="text/javascript" src="{% static "putty/js/add.js" %}"></script>
+{% endblock %}

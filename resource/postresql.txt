@@ -1,0 +1,15 @@
+命令操作： 
+数据的导出：pg_dump -U postgres(用户名)  (-t 表名)  数据库名(缺省时同用户名)  > c:\fulldb.sql 
+数据的导入：psql -U postgres(用户名)  数据库名(缺省时同用户名) < C:\fulldb.sql 
+pgAdmin操作： 
+数据的导出：在库名上右击-->backup-->ok，即将数据保存到.backup文件中。 
+数据的导入：在库名上右击-->restore-->注意填写.backup文件的路径不能有空格-->ok
+
+
+Pyhton图片处理 ubuntu 12.04
+pip uninstall PIL
+apt-get install libjpeg-dev
+apt-get install libfreetype6-dev
+apt-get install zlib1g-dev
+apt-get install libpng12-dev
+pip install PIL --upgrade

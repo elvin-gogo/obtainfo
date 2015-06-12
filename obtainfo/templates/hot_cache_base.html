@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load obtainfo_tags static cache %}
+{% block SEO %}
+<title>obtainfo - {{title}}</title>
+<meta name="description" content="{{title}}">
+{% endblock %}
+
+{% block privatecss %}
+<link href="{% static "css/index.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block notify-banner %}
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid" style="background:#FFF; min-height:600px;">
+    <div class="span9">
+        {% block content_entry %}
+        {% endblock %}
+    </div> 
+    <div class="span3">
+        {% block content_sidebar %}
+        <div class="sidebar">
+        {% cache 600 hot_stats_detail %}
+            {% hot_stats number=30 %}
+        {% endcache %}
+        </div>
+        {% endblock %}
+    </div><!-- span3 -->
+</div>
+{% endblock %}
+
+{% block privatejs %}
+<script>
+    $("img.lazy").lazyload({effect : "fadeIn"});
+</script>
+{% endblock %}

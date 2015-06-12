@@ -1,0 +1,85 @@
+{% extends "hot_cache_base.html" %}
+{% load obtainfo_tags static %}
+{% block SEO %}
+<title>obtainfo - {{title}}</title>
+<meta name="description" content="{{title}}">
+{% endblock %}
+
+{% block privatecss %}
+    <link href="{% static "css/retrieve.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content_entry %}
+<div class="new_hot">
+    <div class="condition" style="border-bottom: 1px solid #ddd;">
+        <h3>电影 / 电视剧筛选</h3>
+        <dl class="dl-horizontal">
+            {% for t in table %}
+            <dt>{{t.title}}</dt>
+            <dd>
+                <ul class="nav nav-pills index_nav_pills" data-name="{{t.name}}">
+                    {% for i in t.k %}
+                        <li {% if forloop.first %}class="active"{% endif %}>
+                            <a href="#" data-val="{{forloop.counter0}}" data-toggle="pill">{{i}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </dd>
+            {% endfor %}
+        </dl>
+    </div>
+    
+    <div class="short-content" id="short-content" style="position: relative; margin-top: 30px; width: 728px; min-height: 935px;">
+    </div>
+</div>
+{% endblock %}
+
+{% block privatejs %}
+
+{% verbatim %}
+<script id="viedo-board-template" type="text/x-handlebars-template">
+<div class="video-board">
+	{{#each board}}
+	<ul>
+		{{#each this}}
+		<li>
+			<div class="vb-item">
+				<a href="/detail/{{_id.$oid}}/" target="_blank" class="vbi-poster">
+					<img class="img-responsive vbip-img" src="{{stdpic}}" alt="{{title}}" width=130 height=170>
+				</a>
+				<h4 class="vbi-title">{{title}}</h4>
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+	{{/each}}
+</div>
+<div class="pagination pagination-centered" style="margin-top: 30px;">
+	<ul id="pagination">
+		{{#if has_previous}}
+			<li><a title='上一页' page="{{previous_page_number}}" href='#'><span>&lt;</span></a></li>
+		{{/if}}
+		{{#each range}}
+			{{#if_eq a b}}
+				<li class="active"><a title='当前页:{{a}}'><span>{{a}}</span></a></li>
+			{{else}}
+				<li><a page="{{a}}" href='#'><span page="{{a}}">{{a}}</span></a></li>
+			{{/if_eq}}
+		{{/each}}
+		{{#if has_next}}
+			<li><a title='下一页' page="{{next_page_number}}" href='#' ><span>&gt;</span></a></li>
+		{{/if}}
+	</ul>
+</div>
+</script>
+{% endverbatim %}
+
+<script type="text/javascript">
+var global = { {% for t in table %} {{t.name}}:String(),{% endfor %} };
+</script>
+
+<script type="text/javascript" src="{% static "js/jquery.twbsPagination.min.js" %}"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/spin.js/2.0.1/spin.min.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/spin.js/2.0.1/jquery.spin.min.js"></script>
+<script type="text/javascript" src="{% static "js/retrieve.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,335 @@
+/**
+ * wraper wraper and common 
+ */
+.wrapper_wrapper{
+	background:#FFF; 
+	margin-bottom:20px; 
+	border-top: 2px solid #6ccdee;
+}
+
+/**
+ * Carousel common 
+ */
+.jcarousel-control-prev,.jcarousel-control-next {
+	width:39px;
+	height:78px;
+	position:absolute;
+	top:40%;
+	z-index:200;
+	cursor:pointer;
+	/*background:url("http://obtainfo-first.qiniudn.com/film-mark01.png") scroll;*/
+	background:url("http://img02.taobaocdn.com/imgextra/i2/495498642/T2JXMFXxJXXXXXXXXX_!!495498642.png") scroll;
+	background-repeat:no-repeat;
+	text-align:center;
+	color:#fff;
+	text-decoration:none;
+	text-shadow:0 0 1px #000;
+	font:24px/27px Arial,sans-serif;
+}
+.jcarousel-control-prev {
+	left:0px;
+	/*_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://obtainfo-first.qiniudn.com/film-mark01-p8L.png");*/
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img02.taobaocdn.com/imgextra/i2/495498642/T2AuQAXvJaXXXXXXXX_!!495498642.png");
+	background-position:0 0;
+}
+.jcarousel-control-next {
+	right:0px;
+	/*_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://obtainfo-first.qiniudn.com/film-mark01-p8R.png");*/
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img04.taobaocdn.com/imgextra/i4/495498642/T2KTQHXphXXXXXXXXX_!!495498642.png");
+	background-position:-39px 0px;
+}
+.jcarousel-control-prev:hover {
+	background-position:0 -78px;
+}
+.jcarousel-control-next:hover {
+	background-position:-39px -78px;
+}
+.jcarousel-control-prev.inactive,.jcarousel-control-next.inactive {
+	background-position:-78px -78px;
+}
+
+/**
+ * big poster
+ */
+.big_poster {
+    padding: 0 !important;
+    position: relative;
+    border: 0 !important;
+	width:1000px;
+	height: 400px;
+	background:#FFF;
+	margin-bottom:20px;
+}
+.big_poster .carousel-inner {
+    width: 1000px;
+    height: 400px;
+}
+.big_poster .item {
+    width: 1000px;
+    height: 400px;
+}
+.big-poster-movie-link {
+    width: 1000px;
+    height: 400px;
+}
+.big-poster-movie-link img {
+	max-width:1000px;
+	max-height:400px;
+    width: 1000px;
+    height: 400px;
+}
+.big_poster .jcarousel-control-prev,
+.big_poster .jcarousel-control-next {
+	width:39px;
+	height:78px;
+	position:absolute;
+	top: 40%;
+}
+
+/** **/
+.new_hot{
+	margin-left:15px;
+}
+.new_hot_header{
+	width:100%; 
+	height:40px;
+}
+.new_hot_header h3{
+	text-shadow: none; 
+	font-family: 'Microsoft YaHei'; 
+	font-weight: normal; 
+	float:left;
+}
+.link-more{
+	font-size:12px; 
+	float:right; 
+	margin:22px 10px 0;
+}
+
+
+/**
+ * selection
+ */
+.index_nav_pills {
+	margin:20px 15px 0;
+}
+.index_nav_pills > li {
+	width:36px;
+	height:24px;
+}
+.index_nav_pills > li > a {
+	font:12px/24px '宋体';
+	margin:0px;
+	margin-right:2px;
+	padding:0px 5px;
+	border:0px;
+	border-radius:0px;
+	text-align:center;
+}
+.index_nav_pills > li > a > strong {
+	font-weight:normal;
+}
+
+/** video **/
+.video {
+	position:relative;
+	float:left;
+}
+.video .poster {
+	position:relative;
+	display:block;
+	overflow:hidden;
+}
+.video .poster .play_icon_shadow {
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:#000;
+	opacity:.3;
+	filter:alpha(opacity=30);
+	display:none;
+}
+.video .poster .play_icon {
+	position:absolute;
+	display:none;
+	max-width:64px;
+	max-height:64px;
+	width:64px;
+	height:64px;
+}
+.video .poster .s-mask {
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
+	height:42px;
+	_bottom:-2px;
+	/*background:url(http://obtainfo-first.qiniudn.com/film-bottom.png) no-repeat;*/
+	background:url(http://img04.taobaocdn.com/imgextra/i4/495498642/T2VycBXt4aXXXXXXXX_!!495498642.png) no-repeat;
+	_background:none repeat scroll 0 0 #000000;
+}
+.video .poster .s-title {
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
+	height:22px;
+	overflow:hidden;
+	font:12px/22px 'Microsoft YaHei';
+	color:#FFF;
+	line-height:22px;
+	text-align:center;
+}
+
+.selection {
+    padding: 0 !important;
+    position: relative;
+    border: 0 !important;
+	width:970px;
+	margin-left:15px; 
+	margin-right:15px;
+}
+/*
+.selection .jcarousel {
+    width: 970px;
+    height: 260px;
+}
+.selection .jcarousel-control-prev,
+.selection .jcarousel-control-next {
+	position:absolute;
+	top: 121px;
+}
+*/
+.selection_list{
+	width: 970px;
+	height:250px;
+}
+.selection_list .video {
+	width:192px;
+	height:121px;
+	margin-left: 1px;
+	margin-bottom: 1px;
+}
+.selection_list .video .poster {
+	height:121px;
+}
+.selection_list .video .poster .poster_img {
+	max-width:192px;
+	max-height:121px;
+	width:192px;
+	height:121px;
+}
+.selection_list .video .poster .play_icon_shadow{
+	max-width:192px;
+	max-height:121px;
+	width:192px;
+	height:121px;
+}
+.selection_list .video .poster .play_icon{
+	left: 63px;
+	top: 28px;
+}
+.selection_list .video_first {
+	width:390px;
+	height:244px;
+	margin-left: 0px !important;
+	margin-bottom: 10px;
+}
+.selection_list .video_first .poster {
+	height:243px;
+}
+.selection_list .video_first .poster .poster_img {
+	max-width:390px;
+	max-height:243px;
+	width:390px;
+	height:243px;
+}
+.selection_list .video_first .play_icon_shadow{
+	max-width:390px !important;
+	max-height:243px !important;
+	width:390px !important;
+	height:243px !important;
+}
+.selection_list .video_first .poster .play_icon{
+	left: 163px;
+	top: 89px;
+}
+
+.movie{
+	height: 220px;
+	width: 729px;
+}
+.movie .movie-poster{
+	float: left;
+	width: 150px;
+}
+.movie .movie-poster img{
+  max-width: 150px;
+  max-height: 200px;
+  width:150px;
+  height:200px;
+}
+
+.movie .detail{
+  position: relative;
+  margin-left: 160px;
+  min-height: 200px;
+  font-size: 12px;
+}
+.detail a:hover{
+	color: #f02129;
+	text-decoration: none;
+}
+.detail h4{
+	color: #444;
+	font-family: '微软雅黑', '宋体', Arial;
+	font-size: 18px;
+	font-weight: bold;
+}
+.ontop .detail h4{
+	color: #fe6e10;
+}
+.h4_light{
+	font-size: 14px;
+	font-weight: normal !important;
+}
+.desc{
+	float:left;
+	margin-bottom:5px;
+	color: #a7a9ac;
+	width: 40px;
+}
+.content{
+	width:520px;
+	margin-bottom:5px;
+	margin-left:40px;
+}
+.single-line{
+	height:20px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+.figcaption{
+	height:60px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	word-break: normal;
+}
+.douban-link {
+	padding:0px;
+	margin:0px;
+	color:#fe6e10;
+	font-weight: bold;
+}
+.two-infos {
+	width: 569px;
+	height: 25px;
+}
+.two-infos-part {
+	float: left;
+}
+.two-infos-part .content{
+	width:220px;
+	margin-bottom:5px;
+	margin-left:40px;
+}

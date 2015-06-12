@@ -1,0 +1,102 @@
+<div class="tab-pane" id="detail">
+    <form class="form-horizontal detail-form">
+        <div class="control-group">
+            <label class="control-label" for="oid">更新</label>
+            <div class="controls">
+                <input type="text" id="oid" placeholder="数据库ID" style="width: 180px; margin-left: 10px;" value="{{oid}}">
+                <input type="text" id="type" placeholder="记录类型" style="width: 160px;">
+                <div class="switch switch-small" data-on="info" data-off="success" style="float: left">
+                    <input type="checkbox" name="ontop-checkbox"/>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="title">标题</label>
+            <div class="controls">
+                <input type="text" id="title" placeholder="电影名字" value="{{title}}" style="width: 400px;">
+                <button class="btn" id="title_check">Check</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="imdb">评分</label>
+            <div class="controls">
+                <input type="text" id="imdb" placeholder="IMDB" style="width: 180px;">
+                <input type="text" id="douban" placeholder="豆瓣" style="width: 180px;">
+                <input type="text" id="ranking" placeholder="人数 / 分数" style="width: 75px;">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="aka">别名</label>
+            <div class="controls">
+                <input type="text" id="aka" placeholder="别名" class="full_input">
+            </div>
+        </div>
+      
+        <div class="control-group">
+            <label class="control-label" for="director">导演</label>
+            <div class="controls">
+                <input type="text" id="director" placeholder="导演" class="full_input">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="writer">编剧</label>
+            <div class="controls">
+                <input type="text" id="writer" placeholder="编剧" class="full_input">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="actor">演员</label>
+            <div class="controls">
+                <input type="text" id="actor" placeholder="演员" class="full_input">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="genre">类型</label>
+            <div class="controls">
+                <input type="text" id="genre" placeholder="电影 / 电视流派" class="full_input">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="area">地区</label>
+            <div class="controls">
+                <input type="text" id="area" placeholder="国家 / 地区" style="width: 180px;">
+                <input type="text" id="language" placeholder="语言" style="width: 205px;">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="year">年代</label>
+            <div class="controls">
+                <input type="text" id="year" placeholder="年代" style="width: 60px;">
+                <input type="text" id="showtime" placeholder="首播日期 / 上映日期" style="width: 110px;">
+                <input type="text" id="season" placeholder="季数" style="width: 60px;">
+                <input type="text" id="runtime" placeholder="单集片长 / 片长" style="width: 120px;">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="season">完结</label>
+            <div class="controls">
+                <div id="finish-state" class="switch switch-small" data-on="info" data-off="success" style="float: left">
+                    <input type="checkbox" name="finish-checkbox"/>
+                </div>
+                <input type="text" id="episode" placeholder="集数" style="width: 60px; margin-left: 5px;">
+                <input type="text" id="last" placeholder="当前集数" style="width: 215px;">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="plot">简介</label>
+            <div class="controls" style="">
+                <textarea rows="9" id="plot" class="full_input"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,138 @@
+{% load comments i18n %}
+<div id="entry-{{ object.pk }}" class="entry hentry{% if object.featured %} featured{% endif %}">
+    
+    {% block entry-header %}
+    <div class="entry-head">
+        {% block entry-title %}
+        <h2 class="entry-title">
+            <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark" target='_blank'>
+                {{ object.title }}
+            </a>
+        </h2>
+        {% endblock entry-title %}
+        
+        {% block entry-info %}
+        <div class="entry-cat">
+            {% block entry-authors %}
+            {% with authors=object.authors.all %}
+                {% if authors|length %}
+                    {% trans "Written by" %}
+                    {% for author in authors %}
+                        <span class="vcard author"> {{ author }} </span>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% trans "on" %}
+                {% else %}
+                    {% trans "Written on" %}
+                {% endif %}
+            {% endwith %}
+            {% endblock entry-authors %}
+            
+            {% block entry-published %}
+                <time class="published" datetime="{{ object.creation_date|date:"c" }}" pubdate="pubdate">{{ object.creation_date|date:"DATE_FORMAT" }}</time>
+            {% endblock entry-published %}
+            
+            {% block entry-categories %}
+            {% with categories=object.categories.all %}
+            {% if categories|length %}
+            {% trans "in" %}
+            {% for category in categories %}
+            <a href="{{ category.get_absolute_url }}"
+               title="{% blocktrans %}Show all entries in {{ category }}{% endblocktrans %}"
+               rel="tag category">{{ category }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}.
+            {% endwith %}
+            {% endblock entry-categories %}
+        </div>
+        {% endblock entry-info %}
+    </div>
+    {% endblock entry-header %}
+  
+    {% block entry-body %}
+    <div class="entry-body">        
+        {% block entry-content %}
+        <div class="entry-excerpt lead">
+            {% block entry-image %}
+            {% if object.image %}
+            <div class="entry-banner" style="width: {{object.image.width}}px; height: {{object.image.height}}px;">
+                <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark" target='_blank'>
+                    <img src="{{ object.image.url }}" width={{object.image.width}} height={{object.image.height}} alt="{{ object.title }}"/>
+                </a>
+            </div>
+            {% endif %}
+            {% endblock entry-image %}
+            
+            <div class="entry-content">
+                {{ object.excerpt|safe }}
+            </div>
+        </div>
+        {% endblock entry-content %}
+    </div>
+    {% endblock entry-body %}
+  
+    {% block entry-footer %}
+    <div class="entry-meta">
+        <ul>
+            <li>
+                {% block continue-reading %}
+                    <b class="continue-reading">
+                        <a href="{{ object.get_absolute_url }}"
+                           title="{% blocktrans with object=object.title %}Continue reading {{ object }}{% endblocktrans %}"
+                           rel="bookmark" class="btn btn-primary">
+                          {% trans "Continue reading" %}
+                        </a>
+                    </b>
+                {% endblock continue-reading %}
+            </li>
+            <li>|</li>
+            <li>
+                {% block entry-tags %}
+                <b class="entry-tags">
+                  <span class="glyphicon glyphicon-tags"></span> <strong>{% trans "Tags" %}</strong> :
+                  {% for tag in object.tags_list %}
+                  <a href="{% url 'zinnia_tag_detail' tag %}"
+                     title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}"
+                     rel="tag">{{ tag }}</a>
+                  {% empty %}
+                  <span>{% trans "No tags" %}</span>
+                  {% endfor %}
+                </b>
+                {% endblock entry-tags %}
+            </li>
+            <li>|</li>
+            <li>
+                {% block entry-discussions %}
+                <b class="entry-discussions">
+                  <span class="glyphicon glyphicon-comment"></span> <strong>{% trans "Discussions" %}</strong> :
+                  {% block entry-comments %}
+                  {% with comment_count=object.comment_count %}
+                  {% if comment_count %}
+                  <a href="{{ object.get_absolute_url }}#comments"
+                     title="{% blocktrans with object=object.title %}Comments on {{ object }}{% endblocktrans %}">
+                    {% blocktrans count comment_count=comment_count %}{{ comment_count }} comment{% plural %}{{ comment_count }} comments{% endblocktrans %}
+                  </a>
+                  {% else %}
+                  {% if object.comments_are_open %}
+                  {% trans "No comments yet." %}
+                  <a href="{{ object.get_absolute_url }}#comment-form"
+                     title="{% blocktrans with object=object.title %}Leave a comment on {{ object }}{% endblocktrans %}">
+                    {% trans "Be first to comment!" %}
+                  </a>
+                  {% else %}
+                  {% trans "Comments are closed." %}
+                  {% endif %}
+                  {% endif %}
+                  {% endwith %}
+                  {% endblock entry-comments %}
+                </b>
+                {% endblock entry-discussions %}
+            </li>
+            <li>
+                {% if object.access %}
+                    共{{ object.access }}人围观
+                {% else %}
+                    第一个围观
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    {% endblock entry-footer %}
+</div>

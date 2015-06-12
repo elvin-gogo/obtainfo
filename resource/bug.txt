@@ -1,0 +1,1 @@
+2014-11-02, 出现菜单错误是因为使用了Django的子域名，由于Root.URL配置为Mysite.url或者Obtainfo.URL导致Zinnia目录下的URL配置没有被初始化，然后就出现菜单乱长。

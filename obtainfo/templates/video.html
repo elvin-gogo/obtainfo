@@ -1,0 +1,9 @@
+<div class="video {% if forloop.first %}video_first{%endif%}">
+	<a href="/detail/{{v.id}}/" class="poster">
+		<img class="lazy img-responsive poster_img" data-original="{{v.img.url}}" alt="{{v.img.titile}}">
+		<div class="play_icon_shadow"></div>
+		<img src="http://img03.taobaocdn.com/imgextra/i3/495498642/T2CqwDXDBXXXXXXXXX_!!495498642.png" class="play_icon">
+		<span class="s-mask"></span>
+		<span class="s-title">{{v.title}}</span>
+	</a>
+</div>

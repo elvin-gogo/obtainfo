@@ -1,0 +1,27 @@
+{% extends "hot_cache_base.html" %}
+{% load obtainfo_tags static %}
+{% block SEO %}
+<title>obtainfo - {{title}}</title>
+<meta name="description" content="{{title}}">
+{% endblock %}
+
+{% block content_entry %}
+<div class="new_hot">
+    {% if m.results%}
+        {% include 'item_list.html' %}
+    {% else %}
+        <div style="margin-top: 20px;">
+            <div class="alert" style="width: 600px; margin-left: auto;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>抱歉！出问题了哦！</strong>{{m.errors}}
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block privatejs %}
+    <script>
+        $("img.lazy").lazyload({effect : "fadeIn"});
+    </script>
+{% endblock %}

@@ -1,0 +1,99 @@
+body {
+	/*padding-top: 20px;*/
+	padding-bottom: 60px;
+	/*background: url(bc.png) repeat-x scroll 0 0 #f3f2f3;*/
+	background: url(http://img01.taobaocdn.com/imgextra/i1/495498642/T2LF7DXDJXXXXXXXXX_!!495498642.png) repeat-x scroll 0 0 #f3f2f3;
+}
+
+/* Custom container */
+.container {
+	margin: 0 auto;
+	width: 1300px;
+}
+
+.row-fluid{
+	margin-top: 30px;
+}
+
+.raw_show{
+	float: left;
+	width: 480px;
+	position: relative;
+}
+
+.add_main{
+	float: left;
+	margin-left: 5px;
+	position: relative;
+	width: 565px;
+}
+
+.search_result{
+	float: left;
+	margin-left: 10px;
+	position: relative;
+	width: 240px;
+}
+
+.form-horizontal .control-label{
+	width: 70px !important;
+}
+
+.form-horizontal .controls{
+	margin-left: 80px !important;
+}
+
+.half_input{
+	width: 180px;
+}
+.full_input{
+	width: 400px;
+}
+
+#title_check{
+	float: right;
+}
+
+.form-horizontal .controls {
+	font-size: 12px;
+}
+
+.form-horizontal input {
+   font-family: inherit;
+   font-size: inherit;
+}
+
+.form-horizontal textarea {
+   font-family: inherit;
+   font-size: inherit;
+}
+
+.result_items{
+	margin-top: 10px;
+	border-bottom: dotted 1px;
+	min-height: 110px;
+}
+.result_poster{
+	float: left;
+	width: 67px;
+	height: 100px;
+}
+.result_content{
+	margin-left: 72px;
+	margin-top: 2px;
+}
+.result_content h1{
+	font-size: 16px;
+	margin: 2px 2px;
+}
+.result_content p{
+	font-size: 12px;
+	overflow: hidden;
+}
+
+.hero-unit{
+	padding: 20px 0 10px 0 !important;
+	border:  dashed 1px;
+	margin-bottom: 15px;
+	/*background: #F9F9F9;*/
+}

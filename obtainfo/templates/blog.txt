@@ -1,0 +1,21 @@
+﻿{% load obtainfo_tags %}{% if m.resource.download %}http://movie.obtainfo.com/detail/{{m|oid}}/{% elif m.resource.online%}http://movie.obtainfo.com/detail/{{m|oid}}/{%endif%}
+{{m.title}} {{ m.language | first }} {%if m.year%}({{m.year}}){%endif%}
+
+{% if m.douban.id %}豆瓣评分：{{m.douban.ranking.score}}{% endif %}
+{% if m.aka %}又 名：{{ m.aka | join:" / " }}{% endif %}
+{% if m.genre %}标 签：{{ m.genre | join:" / " }}{% endif %}
+{% if m.director %}导 演：{{ m.director | join:" / " }}{% endif %}
+{% if m.writer %}编 剧：{{ m.writer | join:" / " }}{% endif %}
+{% if m.actor %}主 演：{{ m.actor | join:" / " }}{% endif %}
+{% if m.area %}地 区：{{ m.area | join:" / " }}{% endif %}
+{% if m.runtime %}片 长：{{m.runtime}}{% endif %}
+{% if m.showtime %}上映日期：{{m.showtime}}{% endif %}
+{% if m.imdb %}IMDB：http://www.imdb.com/title/{{m.imdb}}/{% endif %}
+
+{% if m.plot %}简介：{{m.plot}}{%endif%}
+
+{% if m.resource.download %}资源地址：http://movie.obtainfo.com/detail/{{m|oid}}/{% elif m.resource.online%}在线观看：http://movie.obtainfo.com/detail/{{m|oid}}/{%endif%}
+
+欧泊影视，最全的影视搜索平台。
+http://movie.obtainfo.com/
+欧泊影视_{{m.title}}

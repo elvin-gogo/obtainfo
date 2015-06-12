@@ -1,0 +1,92 @@
+<div class="tab-pane" id="tv-online-pane" style="min-height: 2000px;">
+    <div class="online-start-form-wrapper" style="border: dotted 1px; margin-bottom: 10px;">
+        <form class="form-horizontal" style="margin-top: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="online-crawl-source">From</label>
+                <div class="controls">
+                    <input type="text" id="online-crawl-source" placeholder="crawl source" style="width: 360px;">
+                    <button class="btn" id="online-start-button">start</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="render-online-resource"></div>
+</div>
+
+<script id="online-block-template" type="text/x-handlebars-template">
+<div class="online-add-block">
+    <div class="online-start-form-wrapper" style="border-bottom: dotted 1px;">
+        <form class="form-horizontal" style="margin-top: 20px;">
+            <div class="control-group">
+                <label class="control-label" for="online-crawl-source">From</label>
+                <div class="controls">
+                    <input type="text" placeholder="crawl source" style="width: 360px;" value={% verbatim %}{{from}}{% endverbatim %}>
+                    <button class="btn">delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="online-detail-style-wrapper">
+        <div class="online-nav-wrapper" style="border-bottom: dotted 1px;">
+            <ul class="nav nav-pills" {% verbatim %}id="online-tab-{{id}}"{% endverbatim %} style="margin: 10px;">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">新增<b class="caret"></b></a>
+                    <ul class="dropdown-menu" {% verbatim %}id="dropdown-menu-{{id}}"{% endverbatim %}>
+                        {% for site in sites %}
+                        <li>
+                            <a href="#" data-logo="{{site.logo}}" data-name="{{site.name}}" {% verbatim %}data-id="{{id}}"{% endverbatim %}>
+                                <img src="{{site.logo}}">&nbsp;&nbsp;{{site.name}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div {% verbatim %}id="online-detail-{{id}}"{% endverbatim %} class="online-detail"></div>
+    </div>
+</div>
+</script>
+
+{% verbatim %}
+<script id="online-tab-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <li class="online-tab-items"><a href="#{{id}}" data-id="{{id}}" data-toggle="tab">{{name}}</a></li>
+    {{/each}}
+</script>
+{% endverbatim %}
+
+{% verbatim %}
+<script id="online-detail-template" type="text/x-handlebars-template">
+<div class="online-detail-show" id="online-detail-show-{{id}}">
+    {{#each episode}}
+    <button class="online-button pure-button" data="{{num}}">{{num}}</button>
+    {{/each}}
+</div>
+<div class="online-per-add-form" style="border-bottom: dotted 1px;">
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="link-{{id}}">Episode</label>
+            <div class="controls">
+                <input type="number" id="current-{{id}}" style="width: 50px;" value="{{current}}" />
+                <input type="text" id="link-{{id}}" placeholder="episode url" style="width: 280px;">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Action</label>
+            <div class="controls">
+                <button class="btn" id="online-add-add-{{id}}">Add</button>
+                <button class="btn" id="online-add-delete-{{id}}">Delete</button>
+                <button class="btn" id="online-add-reset-{{id}}">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+</script>
+{% endverbatim %}
+
+{% verbatim %}
+<script id="online-button-template" type="text/x-handlebars-template">
+    <button class="online-button pure-button" data="{{num}}">{{num}}</button>
+</script>
+{% endverbatim %}

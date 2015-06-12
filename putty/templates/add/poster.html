@@ -1,0 +1,62 @@
+<div class="tab-pane" id="poster">
+    <div class="hero-unit no-img">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <div class="switch switch-small" data-on="info" data-off="success" style="margin-left:40px;">
+                    <input type="checkbox" name="poster-checkbox"/>
+                </div>
+            </div>
+        </form>
+    </div>
+        
+    <div class="hero-unit add_img_from_upload">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button" style="margin-left: 40px;">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>添加图片</span>
+                    <!-- The file input field used as target for the file upload widget -->
+                    <input id="fileupload" class="full_input" type="file" name="img" multiple>
+                </span>
+            </div>
+        </form>
+    </div>
+    
+    <div class="hero-unit add_img_from_url">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="image_url">Image</label>
+                <div class="controls">
+                    <input type="text" id="image_url" placeholder="input image url" class="full_input">
+                    <button class="btn" id="add_img_url">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div id="render_image_show"></div>
+</div>
+
+{% verbatim %}
+<script id="display_image" type="text/x-handlebars-template">
+    {{#each items}}
+    <div class="hero-unit display_image">
+        <div class="image_unit" style="position: relative; height: inherit;">
+            <div class='image_show' style="width: 350px; display:inline-block; padding: 10px; margin-bottom: 10px;">
+                <img src="{{url}}" style="max-width: 350px;">
+            </div>
+            <div class='image_info' style="position: relative; float: right; margin-left: 10px;">
+                <p style="font-size: 12px;">width={{width}}, height={{height}}</p>
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="checkbox"> <input type="checkbox" name="DS" data="{{index}}" {{#is DS '===' 'DS'}} checked="checked" {{/is}}> DS </label>
+                        <label class="checkbox"> <input type="checkbox" name="DH" data="{{index}}" {{#is DH '===' 'DH'}} checked="checked" {{/is}}> DH </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+{% endverbatim %}
