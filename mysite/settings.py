@@ -23,7 +23,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ALLOWED_HOSTS = ['www.obtainfo.com', 'movie.obtainfo.com', 'www.example.com', 'movie.example.com',]
+ALLOWED_HOSTS = ['www.obtainfo.com', 'movie.obtainfo.com', 'www.example.com', 'movie.example.com', ]
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -57,27 +57,27 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-	('django.template.loaders.cached.Loader', (  
-		'app_namespace.Loader',
-		'django.template.loaders.filesystem.Loader',
-		'django.template.loaders.app_directories.Loader',
-	)),
+    ('django.template.loaders.cached.Loader', (
+        'app_namespace.Loader',
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
 )
 
 MIDDLEWARE_CLASSES = (
-	# 'subdomains.middleware.SubdomainURLRoutingMiddleware',
-	'django.middleware.common.CommonMiddleware',
-	'django.contrib.sessions.middleware.SessionMiddleware',
-	'django.middleware.csrf.CsrfViewMiddleware',
-	# 'django.middleware.locale.LocaleMiddleware',
-	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'django.contrib.messages.middleware.MessageMiddleware',
-	#'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'subdomains.middleware.SubdomainURLRoutingMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -108,59 +108,60 @@ TEMPLATE_DIRS = (
 )
 
 DEBUG_TOOLBAR_PANELS = (
-	#'debug_toolbar.panels.versions.VersionsPanel',
-	#'debug_toolbar.panels.timer.TimerPanel',
-	#'debug_toolbar.panels.settings.SettingsPanel',
-	#'debug_toolbar.panels.headers.HeadersPanel',
-	#'debug_toolbar.panels.request.RequestPanel',
-	'debug_toolbar.panels.sql.SQLPanel',
-	#'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-	#'debug_toolbar.panels.templates.TemplatesPanel',
-	#'debug_toolbar.panels.cache.CachePanel',
-	#'debug_toolbar.panels.signals.SignalsPanel',
-	#'debug_toolbar.panels.logging.LoggingPanel',
-	#'debug_toolbar.panels.redirects.RedirectsPanel',
-	'debug_toolbar_line_profiler.panel.ProfilingPanel',
-	'debug_toolbar_mongo.panel.MongoDebugPanel',
-	'template_profiler_panel.panels.template.TemplateProfilerPanel',
-	#'debug_toolbar.panels.profiling.ProfilingPanel',
+    #'debug_toolbar.panels.versions.VersionsPanel',
+    #'debug_toolbar.panels.timer.TimerPanel',
+    #'debug_toolbar.panels.settings.SettingsPanel',
+    #'debug_toolbar.panels.headers.HeadersPanel',
+    #'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    #'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    #'debug_toolbar.panels.templates.TemplatesPanel',
+    #'debug_toolbar.panels.cache.CachePanel',
+    #'debug_toolbar.panels.signals.SignalsPanel',
+    #'debug_toolbar.panels.logging.LoggingPanel',
+    #'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar_line_profiler.panel.ProfilingPanel',
+    'debug_toolbar_mongo.panel.MongoDebugPanel',
+    'template_profiler_panel.panels.template.TemplateProfilerPanel',
+    #'debug_toolbar.panels.profiling.ProfilingPanel',
 )
 
 INSTALLED_APPS = (
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.sites',
-	'django.contrib.sitemaps',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	#'django.contrib.comments',
-	#'django.contrib.flatpages',
-	#'grappelli',
-	#'filebrowser',
-	'django.contrib.admin',
-	#'subdomains',
-	#'flatblocks',
-	'obtainfo',
-	'putty',
-	#'django_xmlrpc',
-	'mptt',
-	'django_mptt_admin',
-	#'tinymce',
-	#'flatpages_tinymce',
-	#'tagging',
-	#'blog',
-	#'zinnia',
-	#'menu',
-	'sendfile',
-	#'kickass',
-	#'debug_toolbar_line_profiler',
-	#'template_profiler_panel',
-	#'debug_toolbar_mongo',
-	#'debug_toolbar',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    #'django.contrib.comments',
+    #'django.contrib.flatpages',
+    #'grappelli',
+    #'filebrowser',
+    'django.contrib.admin',
+    #'subdomains',
+    #'flatblocks',
+    'obtainfo',
+    'putty',
+    #'django_xmlrpc',
+    'mptt',
+    'django_mptt_admin',
+    #'tinymce',
+    #'flatpages_tinymce',
+    #'tagging',
+    #'blog',
+    #'zinnia',
+    #'menu',
+    'sendfile',
+    #'kickass',
+    #'debug_toolbar_line_profiler',
+    #'template_profiler_panel',
+    #'debug_toolbar_mongo',
+    #'debug_toolbar',
 )
 
 from zinnia.xmlrpc import ZINNIA_XMLRPC_METHODS
+
 XMLRPC_METHODS = ZINNIA_XMLRPC_METHODS
 ZINNIA_ENTRY_BASE_MODEL = 'blog.models.AbstractEntry'
 
@@ -168,53 +169,53 @@ TINYMCE_DEFAULT_CONFIG = {
     'file_browser_callback': "djangoFileBrowser",
     'mode': "exact",
     'theme': "advanced",
-    'skin' : "o2k7",
-    'skin_variant' : "silver",
+    'skin': "o2k7",
+    'skin_variant': "silver",
     'height': "350",
     'width': "800",
     'relative_urls': False,
-    'theme_advanced_toolbar_location' : "top",
-    'theme_advanced_toolbar_align' : "left",
-    'theme_advanced_statusbar_location' : "bottom",
-    'theme_advanced_resizing' : True,
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_toolbar_align': "left",
+    'theme_advanced_statusbar_location': "bottom",
+    'theme_advanced_resizing': True,
     'plugins': "nonbreaking, contextmenu, directionality, fullscreen, paste, preview, searchreplace, spellchecker, visualchars, wordcount",
-    'paste_auto_cleanup_on_paste' : True,
+    'paste_auto_cleanup_on_paste': True,
     'nonbreaking_force_tab': True,
-    'theme_advanced_buttons1' : "formatselect,fontsizeselect,|,undo,redo,|,cut,copy,paste,pastetext,pasteword,|,search,replace,|,visualchars,visualaid,cleanup,code,preview,fullscreen",
-    'theme_advanced_buttons2' : "bold,italic,underline,strikethrough,|,forecolor,backcolor,removeformat,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,bullist,numlist,|,outdent,indent,|,link,unlink,anchor,image,blockquote,hr,charmap,",
-    'theme_advanced_buttons3' : "",
+    'theme_advanced_buttons1': "formatselect,fontsizeselect,|,undo,redo,|,cut,copy,paste,pastetext,pasteword,|,search,replace,|,visualchars,visualaid,cleanup,code,preview,fullscreen",
+    'theme_advanced_buttons2': "bold,italic,underline,strikethrough,|,forecolor,backcolor,removeformat,|,justifyleft,justifycenter,justifyright,justifyfull,|,sub,sup,|,bullist,numlist,|,outdent,indent,|,link,unlink,anchor,image,blockquote,hr,charmap,",
+    'theme_advanced_buttons3': "",
 }
 
 # set file cache system
 if DEBUG == False and platform.system() == 'Linux': # linux system with deploy state
-	CACHES = {
-		'default': {
-			'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-			'LOCATION': '/opt/cache/cache',
-			'TIMEOUT': 60 * 60 * 5,
-			'OPTIONS': {
-				'MAX_ENTRIES': 600
-			}
-		}
-	}
-	"""
-	CACHES = {
-		'default': {
-			'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-			'LOCATION': 'obtainfo',
-			'TIMEOUT': 60 * 60 * 5,
-			'OPTIONS': {
-				'MAX_ENTRIES': 600
-			}
-		}
-	}
-	"""
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+            'LOCATION': '/opt/cache/cache',
+            'TIMEOUT': 60 * 60 * 5,
+            'OPTIONS': {
+                'MAX_ENTRIES': 600
+            }
+        }
+    }
+    """
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'obtainfo',
+            'TIMEOUT': 60 * 60 * 5,
+            'OPTIONS': {
+                'MAX_ENTRIES': 600
+            }
+        }
+    }
+    """
 else:
-	CACHES = {
-		'default': {
-			'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-		}
-	}
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
 
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 CACHE_MIDDLEWARE_SECONDS = 60 * 60 * 5
@@ -230,18 +231,18 @@ else:
 
 SESSION_COOKIE_NAME = 'obtainfo'
 if DEBUG == False:
-	SESSION_COOKIE_DOMAIN='.obtainfo.com'
-	SESSION_COOKIE_AGE = 60 * 60 * 24 * 365 * 2 # two years
+    SESSION_COOKIE_DOMAIN = '.obtainfo.com'
+    SESSION_COOKIE_AGE = 60 * 60 * 24 * 365 * 2 # two years
 else:
-	SESSION_COOKIE_DOMAIN='.example.com'
+    SESSION_COOKIE_DOMAIN = '.example.com'
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -272,9 +273,9 @@ LOGGING = {
             'propagate': True,
         },
         'django': {
-            'handlers':['file'],
+            'handlers': ['file'],
             'propagate': True,
-            'level':'ERROR',
+            'level': 'ERROR',
         },
         'obtainfo': {
             'handlers': ['file'],

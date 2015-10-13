@@ -30,32 +30,38 @@ from pcnile.http import json, JsonResponse
 
 from obtainfo.models import SearchKey, MovieInfo, BigPoster, Series
 
+
 class SeriesInline(admin.TabularInline):
     model = Series
     exclude = ('title', 'level',)
 
+
 class SeriesAdmin(DjangoMpttAdmin):
     exclude = ('title', 'level',)
     raw_id_fields = ('parent',)
-    inlines = [ SeriesInline, ]
+    inlines = [SeriesInline, ]
+
 
 class SearchKeyAdmin(admin.ModelAdmin):
     pass
 
+
 class BigPosterAdmin(admin.ModelAdmin):
     pass
+
 
 class MovieInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'visitor', 'zip_visitor', 'recommend', 'top']
     list_filter = ['recommend', 'top'] # 下拉选择过滤列表可能很大，导致数据库全表扫描和全表下载到客户端。
-    search_fields = ['id', 'title',]
+    search_fields = ['id', 'title', ]
     actions = ['mark_recommend', 'mark_top']
-    
+
     def mark_recommend(self, request, queryset):
         for entry in queryset:
             entry.recommend = not entry.recommend
             entry.save()
         self.message_user(request, u"设置成功")
+
     mark_recommend.short_description = u'把所选的项目标记为推荐'
 
     def mark_top(self, request, queryset):
@@ -63,7 +69,9 @@ class MovieInfoAdmin(admin.ModelAdmin):
             entry.top = not entry.top
             entry.save()
         self.message_user(request, u"设置成功")
+
     mark_top.short_description = u'把所选的项目标记为置顶'
+
 
 @csrf_exempt
 @never_cache
@@ -73,40 +81,42 @@ def image(request):
         img = ImageFile(fil)
         width, height = img.width, img.height
     except Exception as e:
-        return JsonResponse({'status':'fail', 'stage':'1', 'reason':str(e)})
-    
+        return JsonResponse({'status': 'fail', 'stage': '1', 'reason': str(e)})
+
     try:
         with open(os.path.join(settings.IMAGE_DIR, fil.name), 'wb') as f:
             for chunk in fil.chunks():
                 f.write(chunk)
-        
-        return JsonResponse({'status':'success', 'width':width, 'height':height})
+
+        return JsonResponse({'status': 'success', 'width': width, 'height': height})
     except Exception as e:
-        return JsonResponse({'status':'fail', 'stage':'2', 'reason':str(e)})
+        return JsonResponse({'status': 'fail', 'stage': '2', 'reason': str(e)})
+
 
 @csrf_protect
 @never_cache
 def login(request):
     from django.contrib.auth.views import login
-    
+
     context = {
         'title': _('Log in'),
         'app_path': request.get_full_path(),
         REDIRECT_FIELD_NAME: request.GET.get('next', '/admin/'),
     }
-    
+
     defaults = {
         'extra_context': context,
         'current_app': 'name',
         'authentication_form': AdminAuthenticationForm,
         'template_name': 'login.html',
     }
-    
+
     return login(request, **defaults)
+
 
 @never_cache
 def logout(request):
     from django.contrib import auth
-    
+
     auth.logout(request)
     return HttpResponseRedirect(reverse('login'))

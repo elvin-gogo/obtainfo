@@ -7,8 +7,8 @@ setup(
     name='pcnile',
     version='1.0',
     license='BSD',
-    package_data = {
-        '': ['*.txt',],
+    package_data={
+        '': ['*.txt', ],
     },
     description='Library of web-related obtainfo functions',
     author='Obtainfo project',

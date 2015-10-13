@@ -14,9 +14,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'obtainfo',
         'USER': 'postgres',
-        'PASSWORD': 'zhy1991223',
+        'PASSWORD': '1991223',
         'HOST': 'localhost',
-        'PORT': '5432',           
+        'PORT': '5432',
     }
 }
 
@@ -39,32 +39,32 @@ SERVER_IP = '106.186.122.161'
 基于服务器IP设置写目录信息
 """
 if socket.gethostbyname(socket.gethostname()) == SERVER_IP:
-	DEBUG = False
-	LOCATION = 'SERVER'
-	INDEX_PATH = '/opt/index'
-	TORRENT_DIR = '/opt/torrent'
-	IMAGE_DIR = '/opt/images'
-	HTML_DIR = '/opt/html'
-	SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
+    DEBUG = False
+    LOCATION = 'SERVER'
+    INDEX_PATH = '/opt/index'
+    TORRENT_DIR = '/opt/torrent'
+    IMAGE_DIR = '/opt/images'
+    HTML_DIR = '/opt/html'
+    SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
 else:
-	DEBUG = True
-	LOCATION = 'LOCAL'
-	LEVEL = 7
-	SENDFILE_BACKEND = 'sendfile.backends.development'
-	
-	# set all kinds of filter
-	if platform.system() == 'Linux':
-	    BASE_PATH = "/home/zhy/workspace/obtainfostatic/store"
-	    INDEX_PATH = os.path.join(BASE_PATH, 'index')
-	    TORRENT_DIR = os.path.join(BASE_PATH, 'torrent')
-	    IMAGE_DIR = os.path.join(BASE_PATH, 'image')
-	    QINIU_IMAGE_DIR = os.path.join(BASE_PATH, 'image')
-	    HTML_DIR = os.path.join(BASE_PATH, 'html')
-	    DBDIR = os.path.join(BASE_PATH, 'wolf')
-	else:
-	    INDEX_PATH = 'D:\\obtainfo\\Store\\index'
-	    TORRENT_DIR = 'D:\\obtainfo\\Store\\torrent'
-	    IMAGE_DIR = 'D:\\obtainfo\\Store\\image'
-	    QINIU_IMAGE_DIR = 'D:\\obtainfo\\Store\\image'
-	    HTML_DIR = "D:\\obtainfo\\Store\\html"
-	    DBDIR = 'D:\\obtainfo\\Store\\db'
+    DEBUG = True
+    LOCATION = 'LOCAL'
+    LEVEL = 7
+    SENDFILE_BACKEND = 'sendfile.backends.development'
+
+    # set all kinds of filter
+    if platform.system() == 'Linux':
+        BASE_PATH = "/home/zhy/workspace/obtainfostatic/store"
+        INDEX_PATH = os.path.join(BASE_PATH, 'index')
+        TORRENT_DIR = os.path.join(BASE_PATH, 'torrent')
+        IMAGE_DIR = os.path.join(BASE_PATH, 'image')
+        QINIU_IMAGE_DIR = os.path.join(BASE_PATH, 'image')
+        HTML_DIR = os.path.join(BASE_PATH, 'html')
+        DBDIR = os.path.join(BASE_PATH, 'wolf')
+    else:
+        INDEX_PATH = 'D:\\obtainfo\\Store\\index'
+        TORRENT_DIR = 'D:\\obtainfo\\Store\\torrent'
+        IMAGE_DIR = 'D:\\obtainfo\\Store\\image'
+        QINIU_IMAGE_DIR = 'D:\\obtainfo\\Store\\image'
+        HTML_DIR = "D:\\obtainfo\\Store\\html"
+        DBDIR = 'D:\\obtainfo\\Store\\db'
