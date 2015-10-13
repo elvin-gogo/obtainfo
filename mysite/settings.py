@@ -35,10 +35,6 @@ LANGUAGES = (
 
 SITE_ID = 1
 
-# USE_I18N = True
-
-# USE_L10N = True
-
 USE_TZ = True
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
@@ -87,43 +83,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'zinnia.context_processors.version',
 )
 
-"""
-if DEBUG == False:
-	ROOT_URLCONF = 'blog.urls'
-else:
-	ROOT_URLCONF = 'obtainfo.urls'
-
-SUBDOMAIN_URLCONFS = {
-	'www': 'blog.urls',
-	'movie': 'obtainfo.urls',
-}
-"""
-
 ROOT_URLCONF = 'obtainfo.urls'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates'),
-)
-
-DEBUG_TOOLBAR_PANELS = (
-    #'debug_toolbar.panels.versions.VersionsPanel',
-    #'debug_toolbar.panels.timer.TimerPanel',
-    #'debug_toolbar.panels.settings.SettingsPanel',
-    #'debug_toolbar.panels.headers.HeadersPanel',
-    #'debug_toolbar.panels.request.RequestPanel',
-    'debug_toolbar.panels.sql.SQLPanel',
-    #'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-    #'debug_toolbar.panels.templates.TemplatesPanel',
-    #'debug_toolbar.panels.cache.CachePanel',
-    #'debug_toolbar.panels.signals.SignalsPanel',
-    #'debug_toolbar.panels.logging.LoggingPanel',
-    #'debug_toolbar.panels.redirects.RedirectsPanel',
-    'debug_toolbar_line_profiler.panel.ProfilingPanel',
-    'debug_toolbar_mongo.panel.MongoDebugPanel',
-    'template_profiler_panel.panels.template.TemplateProfilerPanel',
-    #'debug_toolbar.panels.profiling.ProfilingPanel',
 )
 
 INSTALLED_APPS = (
@@ -134,30 +99,13 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'django.contrib.comments',
-    #'django.contrib.flatpages',
-    #'grappelli',
-    #'filebrowser',
     'django.contrib.admin',
-    #'subdomains',
-    #'flatblocks',
+
     'obtainfo',
     'putty',
-    #'django_xmlrpc',
     'mptt',
     'django_mptt_admin',
-    #'tinymce',
-    #'flatpages_tinymce',
-    #'tagging',
-    #'blog',
-    #'zinnia',
-    #'menu',
     'sendfile',
-    #'kickass',
-    #'debug_toolbar_line_profiler',
-    #'template_profiler_panel',
-    #'debug_toolbar_mongo',
-    #'debug_toolbar',
 )
 
 from zinnia.xmlrpc import ZINNIA_XMLRPC_METHODS
