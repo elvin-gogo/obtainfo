@@ -18,4 +18,7 @@ gang@debian:~$ export GIT_PROXY_COMMAND=/usr/local/bin/git-proxy-wrapper
 gitproxy = /PATH/TO/socks5proxywrapper
 或者直接设置 GIT_PROXY_COMMAND 环境变量
 
+#!/bin/sh
+connect -S 10.22.0.4:1080 "$@"
+
 export GIT_PROXY_COMMAND=”/PATH/TO/socks5proxywrapper”
